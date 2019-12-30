@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LM search__today's setting</title>
+    <meta name="description" content="LM search" />
+    <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="192x192">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Muli';
+            line-height: 18px;
+            /*設定字體範圍高度（行間距）*/
+        }
+
+        #form {
+            color: black;
+            font-weight: bold;
+            float: left;
+        }
+
+        #submitBtn,
+        #ClearBtn {
+            background-color: rgb(143, 208, 219);
+            border: 2px solid rgb(2, 51, 40);
+            border-radius: 5px;
+            box-shadow: 0 16px 22px -17px wheat;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            line-height: 25px;
+            /*設定字體範圍高度（行間距）*/
+            margin-left: 10px;
+            width: 100px;
+        }
+
+        #submitBtn:hover,
+        #ClearBtn:hover {
+            background-color: whitesmoke;
+            color: rgb(2, 51, 40);
+            font-weight: bolder;
+            letter-spacing: 3px;
+        }
+
+        #submitBtn:focus,
+        #ClearBtn:focus {
+            outline: none;
+            background-color: rgb(2, 51, 40);
+            color: whitesmoke;
+        }
+
+        button {
+            outline: none;
+        }
+
+        input {
+            border-radius: 5px;
+        }
+
+        /* meau*/
+        .meau {
+            position: fixed;
+            right: 0;
+            bottom: 80px;
+            transform: translateX(100%);
+            /*指定元素由參考點橫向移動 o 距離*/
+            transition: transform 0.4s ease-in-out;
+            /*控制轉變的時間及變化曲線*/
+            z-index: 100;
+        }
+
+        .meau.visible {
+            transform: translateX(-10px);
+            /* 隱藏 */
+        }
+
+        .meau-panel {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 16px 31px -17px rgba(0, 31, 97, 0.6);
+            border: 5px solid rgb(97, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 150px;
+            width: 270px;
+            max-width: calc(100% - 10px);
+        }
+
+        .meau-panel p {
+            background-color: rgb(97, 0, 0);
+            border-radius: 0 0 10px 10px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 2px 17px 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin: 0;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 200px;
+        }
+
+        .meau-panel p a {
+            color: #FF7500;
+            text-decoration: none;
+        }
+
+        .meau-panel ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .meau-panel ul li {
+            margin: 0 10px;
+        }
+
+        .meau-panel ul li a {
+            border: 2px solid #DCE1F2;
+            border-radius: 40%;
+            color: #001F61;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            height: 45px;
+            width: 55px;
+        }
+
+        .meau-panel ul li a:hover {
+            border-color: rgb(233, 236, 49);
+            box-shadow: 0 9px 12px -9px #FF6A00;
+        }
+
+        #closeMenuBtn {
+            border: 0;
+            color: rgb(110, 117, 138);
+            cursor: pointer;
+            font-size: 20px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        #menuBtn {
+            background-color: rgb(240, 132, 32);
+            border: 1px solid rgb(255, 115, 0);
+            border-radius: 26.5px;
+            box-shadow: 0 16px 22px -17px rgb(255, 29, 29);
+            color: #fff;
+            cursor: pointer;
+            /*改變滑鼠游標的形狀*/
+            font-size: 16px;
+            line-height: 20px;
+            /*設定字體範圍高度（行間距）*/
+            padding: 12px 20px;
+            position: fixed;
+            /*固定位置*/
+            bottom: 20px;
+            /*把图像的底边缘设置在其包含元素底边缘之上20px高的位置*/
+            right: 20px;
+            z-index: 1024;
+        }
+
+        #menuBtn:hover {
+            background-color: whitesmoke;
+            color: rgb(223, 108, 0);
+            font-weight: bold;
+        }
+
+        .floatingText {
+            background-color: rgb(110, 45, 33);
+            border-radius: 10px 10px 0 0;
+            color: rgb(241, 236, 165);
+            padding: 7px 15px;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1024;
+        }
+
+        .floatingText a {
+            color: rgb(228, 140, 140);
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 480px) {
+            .meau.visible {
+                transform: translateX(0px);
+            }
+
+            #menuBtn {
+                right: 10px;
+            }
+        }
+
+        body {
+            position: fixed;
+            background: #65B89B;
+        }
+
+        .line {
+            background: rgba(0, 0, 0, .2);
+            margin: 1em;
+            position: absolute;
+            animation: line 1s linear infinite;
+            transform-origin: 0 50%;
+            opacity: 0;
+            border-radius: 1em;
+        }
+
+        @keyframes line {
+            from {
+                opacity: 0;
+                transform: translateX(0) scaleX(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(100%) scaleX(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(50%) scaleX(1);
+            }
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="logol"><a href="search.html"><span style="color:crimson;">L</span><span
+                    style="color: rgb(57, 150, 243);">M</span><span style="color: goldenrod;"> Search</span></a><span
+                style="text-align: center; color: black; font-size: 40px; font-weight: bold">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次設定</span></h1>
+    </div>
+    <div class="form">
+        <div>
+            &#9831;&nbsp;&nbsp;使用者名稱
+            <input id="username" type="text" placeholder="enter your username" autofocus autocomplete="on"></label>
+            <br>&#9831;&nbsp;&nbsp;提醒位置<br>
+            <table id="alarmLocal">
+                <tr>
+                    <td><label><input name="alarmSeat" type="radio" value="7">頁面左上</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="8">頁面中上</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="9">頁面右上</label></td>
+                </tr>
+                <tr>
+                    <td><label><input name="alarmSeat" type="radio" value="4">頁面左中</label></td>
+                    <td> <label><input name="alarmSeat" type="radio" value="5">頁面正中</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="6">頁面右中</label></td>
+                </tr>
+                <tr>
+                    <td><label><input name="alarmSeat" type="radio" value="1">頁面坐下</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="2">頁面中下</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="3">頁面右下</label></td>
+                </tr>
+            </table>
+            <br>&#9831;&nbsp;&nbsp;提醒視窗覆蓋整個頁面 <br>
+            <label><input name="overImg" type="radio" value="0">否</label>
+            <label><input name="overImg" type="radio" value="1">是</label>
+        </div>
+        <div>
+            <br> &#9831;&nbsp;&nbsp;本次提醒事項~
+            <table id="AlarmTable">
+                <thead>
+                    <tr>
+                        <th>提醒事件</th>
+                        <th>提醒時間</th>
+                        <th><button id="addAlarmBtn">+</button></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <p>
+            <button id="submitBtn">確定</button>
+            <button id="ClearBtn">取消變動</button>
+        </p>
+    </div>
+    <div class="meau">
+        <div class="meau-panel">
+            <p>Go by <span style="color:crimson;">L</span><span style="color: rgb(57, 150, 243);">M</span><span
+                    style="color: yellow;"> Search</span></p>
+            <button id="closeMenuBtn"></button>
+            <h4>Get in touch on</h4>
+            <ul>
+                <li>
+                    <a href="search.html">
+                        <i>Home</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i>Record</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/?gl=TW&hl=zh-TW" target="_blank">
+                        <i>Youtube</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button id="menuBtn">點擊</button>
+    <div class="floatingText">
+        Homework by <a href="#">#wmoo & yuan</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
+        type="text/javascript"></script>
+    <script type="text/javascript">
+        let userId = sessionStorage.getItem('LM-UserId'),
+            userName = sessionStorage.getItem('LM-UserName'),
+            userSeat = sessionStorage.getItem("LM-showSeat"),
+            userOver = sessionStorage.getItem("LM-over"),
+            userAlarm = sessionStorage.getItem("LM-alarm");
+
+        let addAlarmBtn = document.getElementById("addAlarmBtn"),
+            delAlarmBtn = document.getElementsByClassName("delAlarmBtn"),
+            submitBtn = document.getElementById("submitBtn"),
+            ClearBtn = document.getElementById("ClearBtn");
+
+        let menuBtn = document.getElementById('menuBtn'),
+            closeMenuBtn = document.getElementById('closeMenuBtn'),
+            meau = document.querySelector('.meau');
+
+        menuBtn.addEventListener('click', () => {
+            meau.classList.toggle('visible')
+        });//toggle:反轉操作 
+        closeMenuBtn.addEventListener('click', () => {
+            meau.classList.remove('visible')
+        });
+        swal.setDefaults({
+            confirmButtonText: "確定",
+            cancelButtonText: "取消"
+        });
+
+        $(document).ready(function () {
+            if (userId <= 0) {
+                alert("請重新登入");
+                window.location.href = "firstPage.html";
+            }
+            initial();
+
+            $(addAlarmBtn).click(function () {
+                let tbRow = $("#AlarmTable tbody tr").length;//獲取表格的行數
+                let index = tbRow - 1;
+                if (IsNull(index) || tbRow == 0) {//表格行數為0時，或者表格不存在空值時
+                    let content = "<tr>";
+                    content += '<td><input class="alarmText" type="text" autocomplete="on"/><div id="alarmText' + tbRow + '"></div></td>';
+                    content += '<td><input class="alarmTime" type="time"/><div id="alarmTime' + tbRow + '"></div></td>';
+                    content += '<td><button class="delAlarmBtn">x</button></td>';
+                    content += "</tr>";
+                    $("#AlarmTable tbody").append(content);
+                    $(delAlarmBtn).on("click", function () {
+                        $(this).parents("tr").remove();
+                    });
+                }
+                $("#AlarmTable input").on("keyup", function () {
+                    IsNull(index);//驗證是否有空值
+                });
+            });
+
+            $(submitBtn).click(function () {
+                let un = $("#username").val(),
+                    showSeat = $("input[name='alarmSeat']:checked").val(),
+                    over = $("input[name='overImg']:checked").val();
+                let check = true;
+                if (un.length > 20) {
+                    swal("OOPS!!", "!帳號字數要在3~20內!!!!", "error");
+                    eleAct.focus();
+                    return false;
+                }
+                else if (showSeat == undefined) {
+                    check = false;
+                    swal("OOPS!!", "【提醒視窗位置】沒有勾選到喔", "error");
+                }
+                else if (over == undefined) {
+                    check = false;
+                    swal("OOPS!!", "【提醒視窗覆蓋整個頁面】沒有勾選到喔", "error");
+                }
+                else if ($("#AlarmTable tbody tr").length > 0 && (!IsNull($("#AlarmTable tbody tr").length - 1))) {
+                    check = false;
+                    swal("OOPS!!", "【提醒事項】沒寫完喔");
+                }
+                else {
+                    let thingss = [,];
+                    let seleted = $("#AlarmTable tbody input");
+                    if (seleted.length > 0) {
+                        seleted.each(function (i) {
+                            let what = seleted[i].value;
+                            thingss[i] = what;
+                        });
+                    }
+                    else {
+                        thingss = 0;
+                    }
+                    if (check) {
+                        let cmd = {};
+                        cmd["act"] = "Setting";
+                        cmd["userId"] = userId;
+                        cmd["username"] = un;
+                        cmd["showSeat"] = showSeat;
+                        cmd["over"] = over;
+                        cmd["alarm"] = JSON.stringify(thingss);
+                        $.post("http://127.0.0.1/projectWeb/DEBUGG.php", cmd, function (data) {
+                            data = JSON.parse(data);
+                            if (data.statue == false) {
+                                alert("修改失敗 \u2620請重新輸入");
+                                $('#ClearBtn').trigger("click");
+                            }
+                            else {
+                                alert("修改成功!");
+                                leaveUserDetails(userId, un, showSeat, over, thingss);
+                            }
+                        });
+                    }
+                }
+            });
+            $(ClearBtn).click(function () {
+                initial();
+            });
+        });
+
+        function initial() {
+            $("#AlarmTable tbody").empty();
+            $("#username").val(userName);
+            $("input[name='alarmSeat'][value=" + userSeat + "]").attr('checked', true);
+            $("input[name='overImg'][value=" + userOver + "]").attr('checked', true);
+            if (userAlarm === null) {
+                userAlarm = 0;
+            }
+            for (let tbRow = 0; tbRow < Math.floor(userAlarm.length / 2); tbRow++) {
+                let content = "<tr>";
+                content += '<td><input class="alarmText" type="text" autocomplete="on"/><div id="alarmText' + tbRow + '"></div></td>';
+                content += '<td><input class="alarmTime" type="time"/><div id="alarmTime' + tbRow + '"></div></td>';
+                content += '<td><button class="delAlarmBtn">x</button></td>';
+                content += "</tr>";
+                $("#AlarmTable tbody").append(content);
+                $("#alarmText" + tbRow).val(userAlarm[tbRow * 2]);
+                $("#alarmTime" + tbRow).val(userAlarm[tbRow * 2 + 1]);
+                $(delAlarmBtn).on("click", function () {
+                    $(this).parents("tr").remove();
+                });
+            }
+        }
+        function IsNull(trIndex) {
+            let result = true;//遍歷表格的input
+            $("#AlarmTable tbody input").each(function (trIndex) {
+                //判斷是否存在空值
+                if ($("#AlarmTable tbody input")[trIndex].value == "") {
+                    result = false;//提示空值
+                    $(this).next().html("required!");
+                }
+                else {//不為空
+                    $(this).next().html("");
+                }
+            });
+            return result;
+        }
+        function leaveUserDetails(idd, unn, seat, overr, alarmm) {
+            sessionStorage.setItem("LM-UserId", idd);
+            sessionStorage.setItem("LM-UserName", unn);
+            sessionStorage.setItem("LM-showSeat", seat);
+            sessionStorage.setItem("LM-over", overr);
+            sessionStorage.setItem("LM-alarm", alarmm);
+        }
+        var Util = function () { };
+
+        Util.prototype.getRandomInt = function (min, max) {
+            return Math.floor(this.getRandomFloat(min, max));
+        };
+
+        Util.prototype.getRandomFloat = function (min, max) {
+            return Math.random() * (max - min + 1) + min;
+        };
+        var Line = function () {
+            this.x;
+            this.y;
+            this.width;
+            this.height;
+            this.elem;
+        }
+
+        Line.prototype.generateRandom = function () {
+            var t = this;
+            var u = new Util();
+
+            t.x = u.getRandomInt(-100, screen.width);
+            t.y = u.getRandomInt(-100, screen.height);
+
+            t.width = u.getRandomInt(100, 300);
+            t.height = u.getRandomInt(2, 10);
+
+            var div = document.createElement("div");
+            div.classList.add("line");
+            div.style.width = t.width + "px";
+            div.style.height = t.height + "px";
+            div.style.top = t.y + "px";
+            div.style.left = t.x + "px";
+            div.style.setProperty('animation-delay', u.getRandomFloat(0, .5) + 's');
+            div.style.setProperty('animation-duration', u.getRandomFloat(.8, 1.8) + 's');
+
+            document.body.appendChild(div);
+
+        };
+        (function () {
+            for (var i = 0; i <= 50; i++) {
+                new Line().generateRandom();
+            };
+        })();
+    </script>
+
+</body>
+
+</html>

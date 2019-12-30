@@ -1,0 +1,464 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+*{
+  box-sizing: border-box;
+}
+
+html {
+  height:100%;
+  background-image: linear-gradient(to right top, #13011d 0%, rgb(53, 3, 3) 100%);    /*背景漸層*/
+}
+
+
+body{
+  display: block;
+  list-style: none;
+  margin: 0;
+  font-family: 'Muli';
+}
+
+.header {
+  height: 100px;
+  position: relative;
+  z-index: 50;
+}
+  
+.clearfix:before {
+  display: table;/*指定对象作为块元素级的表格，相当于html标签<table>*/
+  content: "";/*在元素的  ::before 和 ::after 伪元素中插入内容*/
+}
+  
+/*MENU*/
+#logol{
+  float: left;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  font-size: 30px;
+  font-weight: bolder;
+  font-family: 'Muli';
+  text-decoration: none;
+}
+
+nav {
+  position: absolute ;  /*相對於瀏覽器視窗定位*/
+  top:0;
+  left:0;
+  width:100%;
+  mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  padding-left: 0;
+  text-align: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  padding: 20px;
+  font-family: "Muli";
+  text-transform:uppercase;
+  color: rgba(243, 241, 241, 0.854);
+  font-size: 30px;
+  text-decoration: none;
+  display: block;
+}
+
+nav ul li a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  color: #F22F08;
+}
+
+
+
+/*side-meau*/
+#mySidenav {
+  font-family: sans-serif;
+  text-transform: uppercase;
+  height: 100%;/* 100% Full-height */
+  width: 0;/* 0 width - change this with JavaScript */
+  position: fixed;/* Stay in place */
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  background-color: black;
+  overflow-x: hidden;/* Disable horizontal scroll */
+  padding-top: 60px;/* Place content 60px from the top */
+  transition: 0.5s;/* 0.5 second transition effect to slide in the mySidenav */
+}
+
+
+.mobile-menu-items {
+  color: white;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+  text-decoration: none;
+  margin: 0 12px 0 12px;
+}
+.mobile-menu-items a {
+  margin: 20px 0 0px 0;
+  display: block;
+  transition: 0.3s;
+  width: 227px;
+  text-align: -webkit-center;
+}
+
+.mobile-menu-items a:hover {/*mouse over*/
+    color: red;
+}
+
+#x-icon-SideBtn{
+  font-size: 38px;
+  color: #dbdbdb;
+  position: absolute;
+  z-index: 1000;
+  top: 9px;
+  right: 29px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+
+#hamburger-icon-SideBtn {
+  font-size: 32px;
+  color: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 1000;
+  top: 9px;
+  right: 29px;
+  cursor: pointer;
+  display: inherit;
+}
+
+/*Search-bar 往上移*/
+.animated {
+  transition: 1s;
+  -webkit-transition: 1s;
+  transform: scale(0.7, 0.7);
+  animation-name: toTop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes toTop {
+  from {
+      top: 400px;
+  }
+
+  to {
+    position:fixed;
+    opacity: 100%;
+    top: 28px;
+    z-index: 2;
+  }
+}
+
+
+.left {
+    width: 60%;
+}
+
+#searchContent {
+  background-color:#59434631;
+  position: absolute;
+  top:150px;
+  margin:50px;
+  text-align: left;
+  color:#cdafd1;
+  font-size: larger;
+  font-weight: bold;
+}
+#searchContent.span{
+  color:white;
+}
+#searchContent a{
+  font-size: x-large;
+  color:rgb(86, 83, 238);
+}
+
+
+/* Animate All */
+* {
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+.search-bar {
+  position: absolute;
+  z-index: 100;
+  left:50%;
+  margin-left: -300px;
+  top: 400px;
+}
+
+.search-bar ::-webkit-input-placeholder { 
+  font-family: 'Muli';
+  color: rgb(77, 66, 15); 
+  font-size: 1.25em;
+}
+
+.search-bar:animated {
+top: px;
+left:50%;
+margin-left: -175px;
+}
+#searchText {
+  text-align: center;
+  border-radius: 25px;
+  margin: 0;
+  opacity: 60%;
+  background-color: rgb(255, 255, 255);
+  height: 55px;
+  outline: none;
+  border: 1px solid #dbdbdb;
+  width: 500px;
+  font-size: 25px;
+}
+/* .search-submit { */
+#searchBtn{
+  border-radius: 25px;
+  height: 55px;
+  color: rgb(0, 0, 0);
+  background-color: #44b4ff;
+  border: 1px solid darken(#20339c, 10%);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  width: 100px;
+  font-size: 25px;
+  margin-left: 3px;
+
+}/* .search-bar */
+#searchBtn:focus {
+	outline: none;/*輪廓線*/
+}
+#searchInfo{
+  position: absolute;
+  top:122px;
+  right:20px;
+  color:rgb(87, 17, 179);
+
+}
+#nextPageBtn {
+  padding: 5px 15px;
+  margin: 6px;
+  border-radius: 5px;
+  display: inline;
+  position: absolute;
+}
+
+#nextPageBtn:hover{
+  background-color: aqua;
+  font-weight: bolder;
+}
+button:focus {
+  outline: none;
+}
+button:hover {
+  cursor: pointer;
+  letter-spacing: 3px;
+}
+.menu claerfix {
+  position:fixed; /*固定位置定位*/
+  top:0; /*距離上方 0 像素*/
+  z-index:1024;
+}
+
+/*MENU懸浮式*/
+.fixed {
+  position: fixed;
+  top: 0;
+  height: 70px;
+  z-index: 1;
+}
+
+
+
+/*背景*/
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.area {
+    background: linear-gradient(to right top, #13011d 0%, rgb(53, 3, 3) 100%);
+    position: fixed;
+    background: -webkit-linear-gradient(to right top, #13011d 0%, rgb(53, 3, 53) 100%);
+    width: 100%;
+    height: 100vh;
+
+
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+/*跳通知*/
+div.ui-dialog-titlebar {
+  /*改title*/
+  background: rgb(209, 61, 12);
+  color: rgb(254, 255, 254);
+  font-weight: normal;
+}
+
+.ui-dialog {
+  /*改中間*/
+  background: rgb(239, 151, 27);
+}
+
+.ui-dialog h1 {
+  /*字*/
+  color: rgb(10, 10, 10);
+  font-family: fantasy;
+  font-size: larger;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+#Respond {
+  /*下拉選單*/
+  background: rgb(241, 203, 11);
+  position: absolute;
+  right: 10%;
+  bottom: 50%;
+  float: right;
+}
+

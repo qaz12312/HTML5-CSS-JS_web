@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LM search</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <meta name="description" content="LM search" />
+    <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="192x192">
+
+    <link rel="stylesheet" href="search.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        var jQuery_ = $.noConflict();
+        $(function () {
+            let dialogH = 0;
+            let dialogW = 0;
+            let dialogL = 0;
+            let dialogT = 0;
+            if (over == 1) {
+                dialogH = $(document.body).outerHeight(true);
+                dialogW = $(document.body).outerWidth(true);
+            }
+            else {
+                switch (showSeat) {
+                    case '7':
+                        dialogL = 0;
+                        dialogT = 0;
+                        break;
+                    case '8':
+                        dialogL = (document.body.clientWidth) / 2;
+                        daialogT = 0;
+                        break;
+                    case '9':
+                        dialogL = document.body.clientWidth;
+                        dialogT = 0;
+                        break;
+                    case '4':
+                        dialogL = 0;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '5':
+                        dialogL = (document.body.clientWidth) / 2;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '6':
+                        dialogL = document.body.clientWidth;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '1':
+                        dialogL = 0;
+                        dialogT = document.body.clientHeight;
+                        break;
+                    case '2':
+                        dialogL = (document.body.clientWidth) / 2;
+                        dialogT = document.body.clientHeight;
+                        break;
+                    case '3':
+                        dialogL = document.body.clientWidth;
+                        dialogT = document.body.clientHeight;
+                        break;
+                }
+            }
+
+            jQuery_("#dialogDiv").dialog({
+                left: dialogL,
+                top: dialogT,
+                width: dialogW,
+                height: dialogH,
+                modal: true,
+                draggable: false,
+                autoOpen: false,
+                buttons: {
+                    "Ok": function () {
+                        jQuery_(this).dialog("close");
+                        var ans = $("#Respond").val();
+                        console.log(ans);
+                        if (ans == 2) {
+                            fiveMinutes();
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <!--選單-->
+        <nav role='navigation' class="menu claerfix">
+            <ul class="top-menu">
+                <h1> <a id="logol" href="search.html"><span style="color:crimson;">L</span><span
+                            style="color: rgb(57, 150, 243);">M</span><span style="color: yellow"> Search</span></a>
+                </h1>
+                <li id="MenuWord1">
+                    <a href="setting.html">SETTING</a>
+                </li>
+                <li id="MenuWord2">
+                    <a href="history.html">History</a>
+                </li>
+                <li id="MenuWord3">
+                    <a href="https://www.youtube.com/?gl=TW&hl=zh-TW" target="_blank">YouTube</a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <div id="mySidenav">
+                        <span id="x-icon-SideBtn" onclick="closeNav()">&times;</span>
+                        <div class="mobile-menu-items">
+                            <a id="mobileMenuWord1" onclick="closeNav()" href="setting.html">
+                                SETTING
+                            </a>
+                            <a id="mobileMenuWord2" onclick="closeNav()" href="history.html">
+                                HISTORY
+                            </a>
+                            <a id="mobileMenuWord3" onclick="closeNav()"
+                                href='https://www.youtube.com/?gl=TW&hl=zh-TW&hl=zh-TW'>
+                                YouTube
+                            </a>
+                        </div>
+                    </div>
+                    <span id="hamburger-icon-SideBtn" onclick="openNav()">&#9776;</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="left">
+        <div class="search-bar">
+            <input type="text" id="searchText" placeholder="What are you looking for?" autofocus autocomplete="off" />
+            <button id="searchBtn">GO!</button>
+        </div>
+        <div id="searchInfo">
+            <span id="totalResults"></span><span>個搜尋結果</span> (<span id="searchTime"></span>)
+        </div>
+        <div id="searchContent">
+        </div>
+    </div>
+    <div id="dialogDiv">
+        <h1 id="notification"></h1>
+        <select id="Respond">
+            <option value="1">我知道了</option>
+            <option value="2">5分鐘後再說</option>
+        </select>
+        <img src="03.png">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
+        type="text/javascript"></script>
+    <script>
+        let userId = sessionStorage.getItem('LM-UserId'),
+            keyword = sessionStorage.getItem('LM-keyword'),
+            userName = sessionStorage.getItem('LM-UserName'),
+            // over = sessionStorage.getItem('LM-over'),
+            over = 1;
+        // showSeat = sessionStorage.getItem('LM-showSeat'),
+        showSeat = 7,
+            userAlarm = sessionStorage.getItem('LM-alarm');
+
+        swal.setDefaults({
+            confirmButtonText: "確定",
+            cancelButtonText: "取消"
+        });
+
+        let arr = [];
+        if (userAlarm === null) {
+            userAlarm = 0;
+        }
+        for (let i = 0; i < Math.floor(userAlarm.length / 2); i++) {
+            let alarmHour = userAlarm[i * 2 + 1].split(":");
+            let alarmMinute = alarmHour[1];
+            alarmHour = alarmHour[0];
+            arr[i] = String(alarmHour) + String(alarmMinute) + String(userAlarm[i * 2]);
+        }
+
+        $(document).ready(function () {
+
+            /*更改dialog標題*/
+            let dialogTitle = document.getElementById("dialogDiv");
+            dialogTitle.setAttribute("title", userName + "，媽媽過來提醒你啦!");
+            let dialogAlarm = document.getElementById("notification");
+
+            /**/
+            $("#searchInfo, ul.side-menu, #nextPageBtn,#Respond,.ui-dialog").hide();
+            document.getElementById("searchContent").innerHTML = "";
+            /**/
+            userId = 1;
+            /**/
+            if (userId <= 0) {
+                alert("請重新登入");
+                window.location.href = "firstPage.html";
+            }
+            else {
+                StartTime();
+                $("#searchBtn").on("click", function () {
+                    if ($("#searchText").val() != "") {
+                        $("#MenuWord1,#MenuWord2,#MenuWord3").hide();
+                        $(".side-menu").show();
+                        $(".menu").css({ "background-color": "black", "position": "fixed", "top": "0", "height": "80px", "z-index": "1" });
+                        $(".search-bar").addClass('animated');// Search-bar 往上移
+                        $("html").css("min-height", "1300px");
+                        initialSearch();// 將上一次的搜尋清除
+                        doSearch(page);
+                    }
+                });
+
+                var page = 1;
+                let totalResults = 0;// 搜尋總筆數
+                if (keyword) {
+                    sessionStorage.removeItem('LM-keyword');
+                    $("#searchText").val(keyword);
+                    $('#searchBtn').click();
+                }
+
+                $('#searchText').keypress(function (e) {       //判斷是否按下ENTER，做搜尋
+                    var key = window.event ? e.keyCode : e.which;
+                    if (key == 13) {
+                        $('#searchBtn').click();
+                    }
+                });
+
+                function initialSearch() {
+                    page = 1;
+                    totalResults = 0;
+                    document.getElementById("searchContent").innerHTML = "";
+                }
+
+                function doSearch(i) {
+                    let queryData = $("#searchText").val();
+                    let url =
+                        "https://www.googleapis.com/customsearch/v1?key=AIzaSyAm2g1Xiwm5gfFqF-8I8uDMCecmTSEidwE&cx=015408741262752838854:yqraf9e4y2a&start="
+                        + i + "&q=" + queryData;
+                    $.getJSON(url, function (data) {
+                        $("#totalResults").html(data.searchInformation.formattedTotalResults);
+                        totalResults = data.searchInformation.totalResults
+                        $("#searchTime").html(data.searchInformation.formattedSearchTime);
+                        $("#searchInfo").show();
+                        let content = "<div>";
+                        for (let i in data.items) {
+                            content += "<a href='" + decodeURI(data.items[i].link) + "'>" + decodeURI(data.items[i].title) + "</a><br>";
+                            content += "<span>" + decodeURI(data.items[i].link) + "</span><br>";
+                            content += "<span>" + decodeURI(data.items[i].snippet) + "</span><br><br>";
+                        }
+                        if (i > 1) {
+                            content += "<button id='lastPageBtn'>上一頁</button>";
+                        }
+                        content += "<button id='nextPageBtn'>下一頁</button><br><br><span>page: " + i + "</span></div>";
+                        $("#searchContent").append(content);
+                        $('html, body').scrollTop(0);
+                        $("#nextPageBtn").on("click", function () {
+                            page++;
+                            $("#searchContent").empty();
+                            doSearch(page);
+                        });
+                        if (i > 1) {
+                            $("#lastPageBtn").on("click", function () {
+                                page--;
+                                $("#searchContent").empty();
+                                doSearch(page);
+                            });
+                        }
+                    });
+                    let cmd = {};
+                    cmd["act"] = "insertLog";
+                    cmd["userId"] = userId;
+                    cmd["keyword"] = queryData;
+                    $.post("http://127.0.0.1/projectWeb/DEBUGG.php", cmd, function (data) {
+                        data = JSON.parse(data);
+                        if (data.statue == false) {
+                            alert("抱歉.. \n目前此筆搜尋未存入 \u2620");
+                        }
+                    });
+                }
+            }
+        });
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        function StartTime() {  /*抓取目前時間*/
+            let today = new Date();
+            let hour = today.getHours();
+            let minute = today.getMinutes();
+            let second = today.getSeconds();
+            minute = CheckTime(minute);
+            second = CheckTime(second);
+            hour = CheckTime(hour);
+            for (let z = 0; z < arr.length; z++) {
+                if (hour == arr[z].substring(0, 2) && minute == arr[z].sustring(2, 4) && second == '00') {  /*設定的時間*/
+                    $("#dialogDiv").dialog("open");
+                    dialogAlarm.innerHTML = arr[z].substr(4);
+                }
+            }
+            setTimeout(StartTime, 1000);
+        }
+
+        function CheckTime(i) {  /*時間<10 前面補0*/
+            if (i < 10) {
+                i = '0' + i;
+            }
+            return i;
+        }
+
+        function fiveMinutes() {
+            /*分 = 分 +5 ;*/
+            StartTime();
+        }
+      /*  $(function () {
+                    jQuery_1_9_1("#dialogDiv").dialog({
+                        modal: false, //鎖住頁面
+                        funtion(){
+                          if(over == 1){
+                              console.log(over);
+                            height:$(document.body).outerHeight(true);
+                            width:$(document.body).outerWidth(true);
+                          }
+                          else{
+                              if(showSeat == 7)
+                                top:$(window).height();
+                                left:0;
+                          }
+                        },
+                        buttons: {
+                            Ok: function () {
+                                jQuery_1_9_1(this).dialog("close");
+                                var ans = $("#Respond").val();
+                                console.log(ans);
+                                if (ans == 2) {
+                                    fiveMinutes();
+                                }
+                            }
+                        }
+                    });
+                });*/
+    </script>
+</body>
+
+</html>
