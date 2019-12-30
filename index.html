@@ -187,22 +187,18 @@
 
             if (act.length > 20 || act.length < 3) {
                 swal("OOPS!!", "帳號字數只能在3~20內!!!!", "error");
-                $("#account").setfocus();
                 return false;
             }
             else if (okAccount) {
                 swal("OOPS!!", "帳號只能是英文、數字、底線哦", "error");
-                $("#account").setfocus();
                 return false;
             }
             else if (pw.length > 20 || pw.length < 3) {
                 swal("OOPS!!", "密碼字數只能在3~20內!!!!", "error");
-                $("#passward").setfocus();
                 return false;
             }
             else if (okPassword) {
                 swal("OOPS!!", "密碼只能是英文、數字、底線哦", "error");
-                $("#passward").setfocus();
                 return false;
             }
             return true;
