@@ -459,7 +459,7 @@
                         cmd["showSeat"] = showSeat;
                         cmd["over"] = over;
                         cmd["alarm"] = JSON.stringify(thingss);
-                        $.post("http://127.0.0.1/projectWeb/DEBUGG.php", cmd, function (data) {
+                        $.post("index.php", cmd, function (data) {
                             data = JSON.parse(data);
                             if (data.statue == false) {
                                 alert("修改失敗 \u2620請重新輸入");
