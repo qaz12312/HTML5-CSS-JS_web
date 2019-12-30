@@ -9,6 +9,80 @@
     <meta name="description" content="LM search" />
     <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="192x192">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+    <script>
+        var jQuery_ = $.noConflict();
+        $(function () {
+            let dialogH = 0;
+            let dialogW = 0;
+            let dialogL = 0;
+            let dialogT = 0;
+            if (over == 1) {
+                dialogH = $(document.body).outerHeight(true);
+                dialogW = $(document.body).outerWidth(true);
+            }
+            else {
+                switch (showSeat) {
+                    case '7':
+                        dialogL = 0;
+                        dialogT = 0;
+                        break;
+                    case '8':
+                        dialogL = (document.body.clientWidth) / 2;
+                        daialogT = 0;
+                        break;
+                    case '9':
+                        dialogL = document.body.clientWidth;
+                        dialogT = 0;
+                        break;
+                    case '4':
+                        dialogL = 0;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '5':
+                        dialogL = (document.body.clientWidth) / 2;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '6':
+                        dialogL = document.body.clientWidth;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '1':
+                        dialogL = 0;
+                        dialogT = document.body.clientHeight;
+                        break;
+                    case '2':
+                        dialogL = (document.body.clientWidth) / 2;
+                        dialogT = document.body.clientHeight;
+                        break;
+                    case '3':
+                        dialogL = document.body.clientWidth;
+                        dialogT = document.body.clientHeight;
+                        break;
+                }
+            }
+
+            jQuery_("#dialogDiv").dialog({
+                left: dialogL,
+                top: dialogT,
+                width: dialogW,
+                height: dialogH,
+                modal: true,
+                draggable: false,
+                autoOpen: false,
+                buttons: {
+                    "Ok": function () {
+                        jQuery_(this).dialog("close");
+                        var ans = $("#Respond").val();
+                        console.log(ans);
+                        if (ans == 2) {
+                            fiveMinutes();
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
         @import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
@@ -307,8 +381,6 @@
         }
 
         function StartTime() {  /*抓取目前時間*/
-            $("#Respond").hide();
-            $(".ui-dialog").hide();
             let today = new Date();
             let hour = today.getHours();
             let minute = today.getMinutes();
@@ -316,41 +388,24 @@
             minute = CheckTime(minute);
             second = CheckTime(second);
             hour = CheckTime(hour);
-            console.log(hour, minute, second);
-            if (hour == '07' && minute == 47 && second == '00') {  /*設定的時間*/
-                $("#Respond").show();
-                $(".ui-dialog").show();
-                //$(".ui-dialog").modal=true;
-                //document.getElementById(".ui-dialog").modal=true;
+            for (let z = 0; z < arr.length; z++) {
+                if (hour == arr[z].substring(0, 2) && minute == arr[z].sustring(2, 4) && second == '00') {  /*設定的時間*/
+                    $("#dialogDiv").dialog("open");
+                    dialogAlarm.innerHTML = arr[z].substr(4);
+                }
             }
             setTimeout(StartTime, 1000);
         }
+
         function CheckTime(i) {  /*時間<10 前面補0*/
             if (i < 10) {
                 i = '0' + i;
             }
             return i;
         }
-        var jQuery_1_9_1 = $.noConflict();
-        $(function () {
-            jQuery_1_9_1("#dialog").dialog({
-                /*height:$(document.body).outerHeight(true),
-                width: $(document.body).outerWidth(true),*/
-                modal: false, //鎖住頁面
-                buttons: {
-                    Ok: function () {
-                        jQuery_1_9_1(this).dialog("close");
-                        var ans = $("#Respond").val();
-                        console.log(ans);
-                        if (ans == 2) {
-                            fiveMinutes();
-                        }
-                    }
-                }
-            });
-        });
         function fiveMinutes() {
             /*分 = 分 +5 ;*/
+            arr[z].sustring(2, 4) = parseInt(arr[z].sustring(2, 4))+5;
             StartTime();
         }
 

@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create account</title>
+    <title>Welecome to LM search !</title>
     <meta name="description" content="LM search" />
-    <link rel="icon" type="image/ico" href="03_192x192.ico" sizes="192x192">
+    <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="192x192">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
     <style>
         @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
@@ -28,7 +28,6 @@
             animation: Gradient 15s ease infinite;
         }
 
-        /* Animate Background*/
         @keyframes Gradient {
             0% {
                 background-position: 0% 50%
@@ -49,7 +48,7 @@
             border: 4px solid white;
             border-radius: .25rem;
             padding: 17px;
-            position: absolute;
+            position: fixed;
             top: 30%;
             left: 39%;
         }
@@ -88,7 +87,6 @@
             -webkit-border-radius: 5px;
             border-radius: 5px;
             margin-left: 4px;
-            background-color: rgb(247, 247, 247);
         }
 
         .inputText:hover {
@@ -99,33 +97,31 @@
             border: 4px solid #ffe484;
             outline: none;
         }
+
+        #Sign-upBtn a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+
 </head>
 
 <body>
     <div class="contentFrame">
         <h1 class="logol"><span style="color:crimson;">L</span><span style="color: rgb(57, 150, 243);">M</span><span
-                style="color: goldenrod;"> Search</span></h1>
-        <p>
-            &#9831;&nbsp;&nbsp;使用者名稱&nbsp;:&nbsp;<label><input id="username" type="text" class="inputText"
-                    placeholder="enter your username" autofocus /></label>
-        </p>
+                style="color: yellow;"> Search</span></h1>
         <p>
             &#9831;&nbsp;&nbsp;帳號&nbsp;:&nbsp;<label><input id="account" type="text" class="inputText"
-                    placeholder="3 ~ 20 words" /></label>
+                    placeholder="enter your account" autofocus="autofocus" autocomplete="on" /></label>
         </p>
         <p>
             &#9831;&nbsp;&nbsp;密碼&nbsp;:&nbsp;<label><input id="passward" type="password" class="inputText"
-                    placeholder="3 ~ 20 words" /></label>
+                    placeholder="enter your passward" /></label>
         </p>
         <p>
-            &#9831;&nbsp;&nbsp;驗證密碼&nbsp;:&nbsp;<label><input id="validatePW" type="password" class="inputText"
-                    placeholder="enter your passward again" /></label>
-        </p>
-        <p>
-            <button id="backBtn">回登入畫面</button>
-            <button id="createBtn">創建帳號</button>
+            <button id="Log-inBtn">log in</button>
+            <button id="Sign-upBtn">Sign up</button>
         </p>
     </div>
 
@@ -133,65 +129,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
         type="text/javascript"></script>
     <script type="text/javascript">
-        swal.setDefaults({
-            confirmButtonText: "確定",
+        swal.setDefaults({//自訂預設值
+            confirmButtonText: "okay!",
             cancelButtonText: "取消"
         });
 
         $(document).ready(function () {
             initial();
-            $("#createBtn").click(function () {
-                let um = $("#username").val(),
-                    act = $("#account").val(),
-                    pw = $("#passward").val(),
-                    vd = $("#validatePW").val();
+
+            $("#Log-inBtn").click(function () {
+                let act = $("#account").val(),
+                    pw = $("#passward").val();
                 let format = Restrict();
 
-                if (!act) {
-                    swal("OOPS!!", "請輸入帳號 \u2620", "error");
+                if ((!act)) {
+                    swal("OOPS!!", "請輸入註冊時用的帳號\u2620", "warning");
+                    $("#account").focus().val("");
                 }
                 else if (!pw) {
-                    swal("OOPS!!", "請輸入密碼 \u2620", "error");
+                    swal("OOPS!!", "沒輸入密碼喔?\u2620", "error");
                 }
-                else if (!vd) {
-                    swal("OOPS!!", "請在驗證密碼處輸入密碼 \u2620", "error");
-                }
-                else if (pw != vd) {
-                    swal("OOPS!!", "輸入的驗證密碼有誤 \u2620", "error");
-                }
-                else {
+                else if (format) {
                     let cmd = {};
-                    cmd["act"] = "creatAccount";
-                    cmd["username"] = um;
+                    cmd["act"] = "logIn";
                     cmd["account"] = act;
                     cmd["password"] = pw;
                     $.post("http://127.0.0.1/projectWeb/DEBUGG.php", cmd, function (data) {
                         data = JSON.parse(data);
                         if (data.statue == false) {
-                            swal("ERROR", data.errorCode, "error");
+                            swal("OOPS!!", "帳號或密號錯誤 \u2620", "error");
                         }
                         else {
-                            swal("完成!", "創建成功\n歡迎使用LM Search \U+1F60A", "success");
-                            leaveUserDetails(data.data, um);
+                            leaveUserDetails(data.data[0], data.data[1], data.data[2], data.data[3], data.data[4]);
                             window.location.href = "search.html";
                         }
                     });
                 }
             });
 
-            $("#backBtn").click(function () {
-                let sure = window.confirm("OPPS!\n尚未建立，確定要離開此頁面嗎?");
-                if (sure != null) {
-                    window.location.href = "index.html";
-                }
+            $("#Sign-upBtn").click(function () {
+                window.location.href = "signUp.html";
             });
         });
 
         function initial() {
-            $("#username").val("");
+            sessionStorage.clear();
             $("#account").val("");
             $("#passward").val("");
-            $("#validatePW").val("");
         }
 
         function Restrict() {
@@ -203,33 +187,33 @@
 
             if (act.length > 20 || act.length < 3) {
                 swal("OOPS!!", "帳號字數只能在3~20內!!!!", "error");
-                $("#account").select().val();
+                $("#account").setfocus();
                 return false;
             }
             else if (okAccount) {
                 swal("OOPS!!", "帳號只能是英文、數字、底線哦", "error");
-                $("#account").select();
+                $("#account").setfocus();
                 return false;
             }
             else if (pw.length > 20 || pw.length < 3) {
                 swal("OOPS!!", "密碼字數只能在3~20內!!!!", "error");
-                $("#passward").select();
+                $("#passward").setfocus();
                 return false;
             }
             else if (okPassword) {
                 swal("OOPS!!", "密碼只能是英文、數字、底線哦", "error");
-                $("#passward").select();
+                $("#passward").setfocus();
                 return false;
             }
             return true;
         }
 
-        function leaveUserDetails(id, namem) {
+        function leaveUserDetails(id, name, seat, overr, alarmm) {
             sessionStorage.setItem("LM-UserId", id);
-            sessionStorage.setItem("LM-UserName", namem);
-            sessionStorage.setItem("LM-showSeat", "5");
-            sessionStorage.setItem("LM-over", "0");
-            sessionStorage.setItem("LM-alarm", "0");
+            sessionStorage.setItem("LM-UserName", name);
+            sessionStorage.setItem("LM-showSeat", seat);
+            sessionStorage.setItem("LM-over", overr);
+            sessionStorage.setItem("LM-alarm", alarmm);
         }
 
     </script>

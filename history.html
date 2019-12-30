@@ -8,30 +8,105 @@
     <title>LM search__history</title>
     <meta name="description" content="LM search" />
     <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="192x192">
+    <script>
+        var jQuery_ = $.noConflict();
+        $(function () {
+            let dialogH = 0;
+            let dialogW = 0;
+            let dialogL = 0;
+            let dialogT = 0;
+            if (over == 1) {
+                dialogH = $(document.body).outerHeight(true);
+                dialogW = $(document.body).outerWidth(true);
+            }
+            else {
+                switch (showSeat) {
+                    case '7':
+                        dialogL = 0;
+                        dialogT = 0;
+                        break;
+                    case '8':
+                        dialogL = (document.body.clientWidth) / 2;
+                        daialogT = 0;
+                        break;
+                    case '9':
+                        dialogL = document.body.clientWidth;
+                        dialogT = 0;
+                        break;
+                    case '4':
+                        dialogL = 0;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '5':
+                        dialogL = (document.body.clientWidth) / 2;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '6':
+                        dialogL = document.body.clientWidth;
+                        dialogT = (document.body.clientHeight) / 2;
+                        break;
+                    case '1':
+                        dialogL = 0;
+                        dialogT = document.body.clientHeight;
+                        break;
+                    case '2':
+                        dialogL = (document.body.clientWidth) / 2;
+                        dialogT = document.body.clientHeight;
+                        break;
+                    case '3':
+                        dialogL = document.body.clientWidth;
+                        dialogT = document.body.clientHeight;
+                        break;
+                }
+            }
+
+            jQuery_("#dialogDiv").dialog({
+                left: dialogL,
+                top: dialogT,
+                width: dialogW,
+                height: dialogH,
+                modal: true,
+                draggable: false,
+                autoOpen: false,
+                buttons: {
+                    "Ok": function () {
+                        jQuery_(this).dialog("close");
+                        var ans = $("#Respond").val();
+                        console.log(ans);
+                        if (ans == 2) {
+                            fiveMinutes();
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
     <style>
-        @font-face {
-            font-family: Gentium;
-            src: url(http://example.com/fonts/Gentium.woff);
-        }
+        @import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
 
         html {
             height: 100%;
         }
 
         body {
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: 'cwTeXYen';
+            font-weight: bold;
             margin: 0;
             padding: 0;
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(13, 52, 58, 1)), to(#000000));
             background: -moz-linear-gradient(top, rgba(13, 52, 58, 1) 0%, rgba(0, 0, 0, 1) 100%);
             overflow: hidden;
-            position: relative;
-            bottom: 200px;
+            position: absolute;
+            top: 295px;
+            left: 500px;
+            /*bottom: 200px;*/
         }
 
         .flib-card {
             position: absolute;
-            top: 550px;
+            top: 100px;
+            left: 300px;
             margin: 0;
             padding: 0;
             align-items: center;
@@ -98,18 +173,21 @@
             /*旋轉180度*/
         }
 
-        .menuWord h1 {
-            font-family: 'Gentium', Arial, Helvetica, sans-serif;
-            font-weight: bold;
+        h1 {
+            font-family: 'cwTeXYen';
+            font-weight: bolder;
             position: fixed;
-            top:250px;
-            right:50%;
+            bottom: 78%;
+            right: 45%;
             text-align: center;
             font-size: 80px;
             background-color: rgb(8, 46, 51);
-          /* background-color: crimson;*/
             opacity: 25%;
             animation: color 5s ease-in-out infinite
+        }
+
+        a {
+            text-decoration: none;
         }
 
         @keyframes color {
@@ -209,8 +287,8 @@
     <section id="rain"></section>
     <nav class="history-meau"></nav>
     <h1 class="menuWord"><a id="logol" href="search.html"><span style="color:crimson;">L</span><span
-                style="color: rgb(57, 150, 243);">M</span><span style="color: yellow"> Search</span></a>歷史紀錄</h1>
-
+                style="color: rgb(57, 150, 243);">M</span><span style="color: yellow">
+                Search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;歷史紀錄</h1>
     <div class="flib-card">
         <div class="cardbox">
             <div class="card Time">
@@ -276,7 +354,6 @@
             }
         }
         function StartTime() {  /*抓取目前時間*/
-            $(".ui-dialog, #Respond").hide();
             let today = new Date();
             let hour = today.getHours();
             let minute = today.getMinutes();
@@ -284,10 +361,11 @@
             minute = CheckTime(minute);
             second = CheckTime(second);
             hour = CheckTime(hour);
-            console.log(hour, minute, second);
-            if (hour == '08' && minute == 52 && second == '20') {  /*設定的時間*/
-                $("#Respond").show();
-                $(".ui-dialog").show();
+            for (let z = 0; z < arr.length; z++) {
+                if (hour == arr[z].substring(0, 2) && minute == arr[z].sustring(2, 4) && second == '00') {  /*設定的時間*/
+                    $("#dialogDiv").dialog("open");
+                    dialogAlarm.innerHTML = arr[z].substr(4);
+                }
             }
             setTimeout(StartTime, 1000);
         }
@@ -297,26 +375,9 @@
             }
             return i;
         }
-        var jQuery_1_9_1 = $.noConflict();
-        $(function () {
-            jQuery_1_9_1("#dialog").dialog({
-                /*height:$(document.body).outerHeight(true),
-                width: $(document.body).outerWidth(true),*/
-                modal: false, //鎖住頁面
-                buttons: {
-                    Ok: function () {
-                        jQuery_1_9_1(this).dialog("close");
-                        var ans = $("#Respond").val();
-                        console.log(ans);
-                        if (ans == 2) {
-                            fiveMinutes();
-                        }
-                    }
-                }
-            });
-        });
         function fiveMinutes() {
             /*分 = 分 +5 ;*/
+            arr[z].sustring(2, 4) = parseInt(arr[z].sustring(2, 4))+5;
             StartTime();
         }
         window.addEventListener("load", createRain, false);

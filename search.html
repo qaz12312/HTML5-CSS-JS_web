@@ -174,10 +174,10 @@
         let userId = sessionStorage.getItem('LM-UserId'),
             keyword = sessionStorage.getItem('LM-keyword'),
             userName = sessionStorage.getItem('LM-UserName'),
-            // over = sessionStorage.getItem('LM-over'),
-            over = 1;
-        // showSeat = sessionStorage.getItem('LM-showSeat'),
-        showSeat = 7,
+            over = sessionStorage.getItem('LM-over'),
+            //over = 1;
+            showSeat = sessionStorage.getItem('LM-showSeat'),
+        //showSeat = 7,
             userAlarm = sessionStorage.getItem('LM-alarm');
 
         swal.setDefaults({
@@ -211,17 +211,20 @@
             /**/
             if (userId <= 0) {
                 alert("請重新登入");
-                window.location.href = "firstPage.html";
+                window.location.href = "index.html";
             }
             else {
                 StartTime();
                 $("#searchBtn").on("click", function () {
                     if ($("#searchText").val() != "") {
+                        $(".header").css({"z-index":"0"});
                         $("#MenuWord1,#MenuWord2,#MenuWord3").hide();
                         $(".side-menu").show();
+                        $(".side-menu").css({"background": "black","box-shadow": "none"});
                         $(".menu").css({ "background-color": "black", "position": "fixed", "top": "0", "height": "80px", "z-index": "1" });
                         $(".search-bar").addClass('animated');// Search-bar 往上移
                         $("html").css("min-height", "1300px");
+                        
                         initialSearch();// 將上一次的搜尋清除
                         doSearch(page);
                     }
@@ -328,6 +331,7 @@
 
         function fiveMinutes() {
             /*分 = 分 +5 ;*/
+            arr[z].sustring(2, 4) = parseInt(arr[z].sustring(2, 4))+5;
             StartTime();
         }
       /*  $(function () {

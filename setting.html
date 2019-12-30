@@ -10,37 +10,59 @@
     <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="192x192">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+        @import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
 
         * {
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Muli';
+            /*font-size: 30px;*/
+            font-family: 'Muli','cwTeXYen';
             line-height: 18px;
             /*設定字體範圍高度（行間距）*/
         }
 
-        #form {
+        .form {
+            position:absolute;
+            left:600px;
+            top: 125px;
             color: black;
             font-weight: bold;
             float: left;
         }
 
+        .title{
+            font-size: 35px;
+            font-weight: bold;
+            color:rgb(85, 58, 222)
+
+        }
+
+        label{
+            font-size: 30px;
+        }
+
+        th{
+            font-size: 30px;
+        }
+
         #submitBtn,
         #ClearBtn {
+            font-family: 'cwTeXYen';
             background-color: rgb(143, 208, 219);
             border: 2px solid rgb(2, 51, 40);
             border-radius: 5px;
             box-shadow: 0 16px 22px -17px wheat;
             color: white;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 25px;
             text-align: center;
             line-height: 25px;
             /*設定字體範圍高度（行間距）*/
             margin-left: 10px;
-            width: 100px;
+            width: 150px;
+            height:50px;
         }
 
         #submitBtn:hover,
@@ -53,6 +75,7 @@
 
         #submitBtn:focus,
         #ClearBtn:focus {
+            
             outline: none;
             background-color: rgb(2, 51, 40);
             color: whitesmoke;
@@ -160,6 +183,7 @@
         }
 
         #menuBtn {
+            font-family: 'cwTeXYen';
             background-color: rgb(240, 132, 32);
             border: 1px solid rgb(255, 115, 0);
             border-radius: 26.5px;
@@ -250,39 +274,46 @@
 
 <body>
     <div class="header">
-        <h1 class="logol"><a href="search.html"><span style="color:crimson;">L</span><span
-                    style="color: rgb(57, 150, 243);">M</span><span style="color: goldenrod;"> Search</span></a><span
-                style="text-align: center; color: black; font-size: 40px; font-weight: bold">
+        <h1 class="logol"><a href="search.html" style="text-decoration: none; font-size: 70px "><span style="color:crimson;">L</span><span
+                    style="color: rgb(57, 150, 243);">M</span><span style="color: rgb(168, 123, 8);"> Search</span></a><span
+                style="text-align: center; color: black; font-size: 70px; font-weight: bold">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次設定</span></h1>
     </div>
+    <br><br>
     <div class="form">
         <div>
-            &#9831;&nbsp;&nbsp;使用者名稱
-            <input id="username" type="text" placeholder="enter your username" autofocus autocomplete="on"></label>
-            <br>&#9831;&nbsp;&nbsp;提醒位置<br>
-            <table id="alarmLocal">
-                <tr>
-                    <td><label><input name="alarmSeat" type="radio" value="7">頁面左上</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="8">頁面中上</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="9">頁面右上</label></td>
+            &#9831;&nbsp;&nbsp;<span class='title'>使用者名稱&nbsp;</span>
+            <input id="username" type="text" placeholder="  enter your username" autofocus autocomplete="on" style="height: 30px;"></label>
+            <br><br><br>&#9831;&nbsp;&nbsp;<span class='title'>提醒位置</span><br>
+            <table id="alarmLocal" style="width: 500px;">
+                <tr >
+                    <td><label><input name="alarmSeat" type="radio" value="7">頁面左上&nbsp;&nbsp;</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="8">頁面中上&nbsp;&nbsp;</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="9">頁面右上&nbsp;&nbsp;</label></td>
                 </tr>
+                <tr>     </tr>
+               
                 <tr>
-                    <td><label><input name="alarmSeat" type="radio" value="4">頁面左中</label></td>
-                    <td> <label><input name="alarmSeat" type="radio" value="5">頁面正中</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="6">頁面右中</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="4">頁面左中&nbsp;&nbsp;</label></td>
+                    <td> <label><input name="alarmSeat" type="radio" value="5">頁面正中&nbsp;&nbsp;</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="6">頁面右中&nbsp;&nbsp;</label></td>
+                    <br>
                 </tr>
+                
                 <tr>
-                    <td><label><input name="alarmSeat" type="radio" value="1">頁面坐下</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="2">頁面中下</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="3">頁面右下</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="1">頁面左下&nbsp;&nbsp;</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="2">頁面中下&nbsp;&nbsp;</label></td>
+                    <td><label><input name="alarmSeat" type="radio" value="3">頁面右下&nbsp;&nbsp;</label></td>
+                    <br>
                 </tr>
+                
             </table>
-            <br>&#9831;&nbsp;&nbsp;提醒視窗覆蓋整個頁面 <br>
-            <label><input name="overImg" type="radio" value="0">否</label>
+            <br><br><br>&#9831;&nbsp;&nbsp;<span class='title'>提醒視窗覆蓋整個頁面 </span><br><br>
+            <label><input name="overImg" type="radio" value="0">否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <label><input name="overImg" type="radio" value="1">是</label>
         </div>
         <div>
-            <br> &#9831;&nbsp;&nbsp;本次提醒事項~
+            <br><br><br> &#9831;&nbsp;&nbsp;<span class='title'>本次提醒事項~</span><br><br>
             <table id="AlarmTable">
                 <thead>
                     <tr>
@@ -294,7 +325,9 @@
                 <tbody></tbody>
             </table>
         </div>
-        <p>
+        <br>
+        <br>
+        <p style="position:absolute; right:-500px;">
             <button id="submitBtn">確定</button>
             <button id="ClearBtn">取消變動</button>
         </p>
@@ -361,7 +394,7 @@
         $(document).ready(function () {
             if (userId <= 0) {
                 alert("請重新登入");
-                window.location.href = "firstPage.html";
+                window.location.href = "index.html";
             }
             initial();
 
@@ -418,7 +451,7 @@
                     else {
                         thingss = 0;
                     }
-                    if (check) {
+                   if (check) {
                         let cmd = {};
                         cmd["act"] = "Setting";
                         cmd["userId"] = userId;
