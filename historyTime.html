@@ -333,13 +333,27 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript">
+     let userId = sessionStorage.getItem('LM-UserId'),
+            keyword = sessionStorage.getItem('LM-keyword'),
+            userName = sessionStorage.getItem('LM-UserName'),
+            over = sessionStorage.getItem('LM-over'),
+            showSeat = sessionStorage.getItem('LM-showSeat'),
+            alarm = sessionStorage.getItem('LM-alarm');
+        let arr = [];
+        if (userAlarm === null) {
+            userAlarm = 0;
+        }
+        for (let i = 0; i < Math.floor(userAlarm.length / 2); i++) {
+            let alarmHour = userAlarm[i * 2 + 1].split(":");
+            let alarmMinute = alarmHour[1];
+            alarmHour = alarmHour[0];
+            arr[i] = String(alarmHour) + String(alarmMinute) + String(userAlarm[i * 2]);
+        }
         $(document).ready(function () {
             $("#Respond").hide();
             $(".ui-dialog").hide();
             StartTime();
             initial();
-            let userId = sessionStorage.getItem('LM-UserId');
-            // if (userId<=0) {
             if (userId < 0) {
                 alert("系統錯誤 \u2620");
             }
