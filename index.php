@@ -36,7 +36,7 @@
 
     function doLogin(){
         global $input,$conn;
-        $sql="SELECT `id`,`username`,`showSeat`,`over`,`alarm` FROM `userDetail` WHERE `account`='".$input['account']."' AND `password`='".$input['password']."'";
+        $sql="SELECT `id`,`username`,`showSeat`,`over`,`alarm` FROM `userdetail` WHERE `account`='".$input['account']."' AND `password`='".$input['password']."'";
         $result=$conn->query($sql);
         if(!$result){
             die($conn->error);
@@ -60,7 +60,7 @@
     function doCreate()
     {
         global $input,$conn;
-        $sql="SELECT `id` FROM `userDetail` WHERE `account`='".$input['account']."'";
+        $sql="SELECT `id` FROM `userdetail` WHERE `account`='".$input['account']."'";
         $result=$conn->query($sql);
         if(!$result){
             die($conn->error);
@@ -73,12 +73,12 @@
             $rtn["data"] = "create fail....";
         }
         else{
-            $new="INSERT INTO  `userDetail`(`id`,`username`,`account`,`password`,`showSeat`,`over`,`alarm`) VALUES(0,'".$input['username']."','".$input['account']."','".$input['password']."',5,0,0)";
+            $new="INSERT INTO  `userdetail`(`id`,`username`,`account`,`password`,`showSeat`,`over`,`alarm`) VALUES(0,'".$input['username']."','".$input['account']."','".$input['password']."',5,0,0)";
             $resultNEW=$conn->query($new);
             if(!$resultNEW){
                 die($conn->error);
             }
-            $sql="SELECT `id` FROM `userDetail` WHERE `account`='".$input['account']."' AND `password`='".$input['password']."'";
+            $sql="SELECT `id` FROM `userdetail` WHERE `account`='".$input['account']."' AND `password`='".$input['password']."'";
             $result=$conn->query($sql);
             if(!$result){
                 die($conn->error);
@@ -137,7 +137,7 @@
     }
     function doSetting(){
         global $input,$conn;
-        $update="UPDATE `userDetail` SET `username`='".$input['username']."',`showSeat`='".$input['showSeat']."',`over`='".$input['over']."',`alarm`='".$input['alarm']."' WHERE `id`='".$input['userId']."'";
+        $update="UPDATE `userdetail` SET `username`='".$input['username']."',`showSeat`='".$input['showSeat']."',`over`='".$input['over']."',`alarm`='".$input['alarm']."' WHERE `id`='".$input['userId']."'";
         $result=$conn->query($update);
         $rtn = array();
         if(!$result){
