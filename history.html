@@ -325,6 +325,17 @@
             over = sessionStorage.getItem('LM-over'),
             showSeat = sessionStorage.getItem('LM-showSeat'),
             alarm = sessionStorage.getItem('LM-alarm');
+        let arr = [];
+        if (userAlarm === null) {
+            userAlarm = 0;
+        }
+        for (let i = 0; i < Math.floor(userAlarm.length / 2); i++) {
+            let alarmHour = userAlarm[i * 2 + 1].split(":");
+            let alarmMinute = alarmHour[1];
+            alarmHour = alarmHour[0];
+            arr[i] = String(alarmHour) + String(alarmMinute) + String(userAlarm[i * 2]);
+        }
+
         $(document).ready(function () {
             $(".ui-dialog, #Respond").hide();
             StartTime();
