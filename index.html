@@ -19,7 +19,6 @@
         body {
             color: whitesmoke;
             line-height: 30px;
-            /*設定字體範圍高度（行間距）*/
             font-weight: bold;
             font-family: 'Muli';
             overflow: hidden;
@@ -49,16 +48,17 @@
             border-radius: .25rem;
             padding: 17px;
             position: fixed;
-            top: 30%;
-            left: 39%;
+            top: 125px;
+            left: 450px;
         }
 
         .logol {
             padding-bottom: 10px;
+            text-align: center;
         }
 
         button {
-            padding: 5px 15px;
+            padding: 5px ;
             margin: 6px;
             float: right;
             background-color: #563d7c;
@@ -66,13 +66,16 @@
             cursor: pointer;
             -webkit-border-radius: 5px;
             border-radius: 5px;
+            width: 105px;
+            height: 36px;
+            font-weight: bold;
         }
 
         button:hover {
             background-color: whitesmoke;
             color: #563d7c;
             font-weight: bolder;
-            letter-spacing: 3px;
+            letter-spacing: 1px;
         }
 
         button:focus {
@@ -98,9 +101,10 @@
             outline: none;
         }
 
-        #Sign-upBtn a {
-            text-decoration: none;
-            color: inherit;
+        #pptLogol{
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
@@ -112,24 +116,26 @@
         <h1 class="logol"><span style="color:crimson;">L</span><span style="color: rgb(57, 150, 243);">M</span><span
                 style="color: yellow;"> Search</span></h1>
         <p>
-            &#9831;&nbsp;&nbsp;帳號&nbsp;:&nbsp;<label><input id="account" type="text" class="inputText"
+            &#9828;&nbsp;&nbsp;門牌號碼&nbsp;:&nbsp;<label><input id="account" type="text" class="inputText"
                     placeholder="enter your account" autofocus="autofocus" autocomplete="on" /></label>
         </p>
         <p>
-            &#9831;&nbsp;&nbsp;密碼&nbsp;:&nbsp;<label><input id="passward" type="password" class="inputText"
+            &#9828;&nbsp;&nbsp;密碼鎖號碼&nbsp;:&nbsp;<label><input id="passward" type="password" class="inputText"
                     placeholder="enter your passward" /></label>
         </p>
         <p>
-            <button id="Log-inBtn">log in</button>
-            <button id="Sign-upBtn">Sign up</button>
+            <button id="Log-inBtn">Open &#155;&#155;</button>
+            <button id="Sign-upBtn">Create &#10010;	</button>
         </p>
     </div>
+    <a href="" target="_blank"><img id="pptLogol" src="ppt.png" width="80" height="80" alt="ppt" /></a>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
         type="text/javascript"></script>
     <script type="text/javascript">
-        swal.setDefaults({//自訂預設值
+
+        swal.setDefaults({
             confirmButtonText: "okay!",
             cancelButtonText: "取消"
         });
@@ -143,11 +149,11 @@
                 let format = Restrict();
 
                 if ((!act)) {
-                    swal("OOPS!!", "請輸入註冊時用的帳號\u2620", "warning");
+                    swal("恩?" ,"請輸入註冊時用的帳號\u2620", "error");
                     $("#account").focus().val("");
                 }
                 else if (!pw) {
-                    swal("OOPS!!", "沒輸入密碼喔?\u2620", "error");
+                    swal("恩??", "沒輸入密碼喔?\u2620", "error");
                 }
                 else if (format) {
                     let cmd = {};
@@ -157,7 +163,7 @@
                     $.post("./index.php", cmd, function (data) {
                         data = JSON.parse(data);
                         if (data.statue == false) {
-                            swal("OOPS!!", "帳號或密號錯誤 \u2620", "error");
+                            swal("OOPS...", "帳號或密號錯誤 \u2620", "error");
                         }
                         else {
                             leaveUserDetails(data.data[0], data.data[1], data.data[2], data.data[3], data.data[4]);
@@ -186,19 +192,19 @@
                 okPassword = re.exec(pw);
 
             if (act.length > 20 || act.length < 3) {
-                swal("OOPS!!", "帳號字數只能在3~20內!!!!", "error");
+                swal("OOPS!!", "帳號字數只能在3~20內!!!!", "warning");
                 return false;
             }
             else if (okAccount) {
-                swal("OOPS!!", "帳號只能是英文、數字、底線哦", "error");
+                swal("OOPS!!", "帳號只能是英文、數字、底線哦 &#9888;", "error");
                 return false;
             }
             else if (pw.length > 20 || pw.length < 3) {
-                swal("OOPS!!", "密碼字數只能在3~20內!!!!", "error");
+                swal("OOPS!!", "密碼字數只能在3~20內!!!!", "warning");
                 return false;
             }
             else if (okPassword) {
-                swal("OOPS!!", "密碼只能是英文、數字、底線哦", "error");
+                swal("OOPS!!", "密碼只能是英文、數字、底線哦 &#9888;", "error");
                 return false;
             }
             return true;
@@ -216,3 +222,5 @@
 </body>
 
 </html>
+
+<!-- 放ppt連結 -->

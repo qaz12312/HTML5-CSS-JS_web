@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 *{
   box-sizing: border-box;
@@ -36,7 +35,6 @@ body{
   margin-left: 50px;
   font-size: 30px;
   font-weight: bolder;
-  font-family: 'Muli';
   text-decoration: none;
 }
 
@@ -70,7 +68,6 @@ nav ul li {
 
 nav ul li a {
   padding: 20px;
-  font-family: "Muli";
   text-transform:uppercase;
   color: rgba(243, 241, 241, 0.854);
   font-size: 30px;
@@ -88,7 +85,6 @@ nav ul li a:hover {
 
 /*side-meau*/
 #mySidenav {
-  font-family: sans-serif;
   text-transform: uppercase;
   height: 100%;/* 100% Full-height */
   width: 0;/* 0 width - change this with JavaScript */
@@ -212,7 +208,6 @@ nav ul li a:hover {
 }
 
 .search-bar ::-webkit-input-placeholder { 
-  font-family: 'Muli';
   color: rgb(77, 66, 15); 
   font-size: 1.25em;
 }
@@ -260,7 +255,7 @@ margin-left: -175px;
   color:rgb(87, 17, 179);
 
 }
-#nextPageBtn {
+#nextPageBtn ,#lastPageBtn{
   padding: 5px 15px;
   margin: 6px;
   border-radius: 5px;
@@ -268,7 +263,7 @@ margin-left: -175px;
   position: absolute;
 }
 
-#nextPageBtn:hover{
+#nextPageBtn:hover,#lastPageBtn:hover{
   background-color: aqua;
   font-weight: bolder;
 }
@@ -461,4 +456,27 @@ img {
   bottom: 50%;
   float: right;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -17,52 +17,38 @@
         }
 
         body {
-            /*font-size: 30px;*/
-            font-family: 'Muli','cwTeXYen';
+            font-family:  'cwTeXYen';
             line-height: 18px;
-            /*設定字體範圍高度（行間距）*/
+            background: #65B89B;
+            padding: 30px;
+            margin: 50px;
+            overflow: hidden;
         }
 
         .form {
-            position:absolute;
-            left:600px;
-            top: 125px;
             color: black;
+            font-size: 25px;
             font-weight: bold;
-            float: left;
-        }
-
-        .title{
-            font-size: 35px;
-            font-weight: bold;
-            color:rgb(85, 58, 222)
-
-        }
-
-        label{
-            font-size: 30px;
-        }
-
-        th{
-            font-size: 30px;
+            width: 100%;
         }
 
         #submitBtn,
         #ClearBtn {
+            position: fixed;
+            bottom: 80px;
             font-family: 'cwTeXYen';
             background-color: rgb(143, 208, 219);
             border: 2px solid rgb(2, 51, 40);
             border-radius: 5px;
             box-shadow: 0 16px 22px -17px wheat;
-            color: white;
+            color: rgb(20, 132, 95);
+            font-weight: bold;
             cursor: pointer;
-            font-size: 25px;
+            font-size: 15px;
             text-align: center;
-            line-height: 25px;
-            /*設定字體範圍高度（行間距）*/
-            margin-left: 10px;
-            width: 150px;
-            height:50px;
+            line-height: 18px;
+            width: 100px;
+            height: 35px;
         }
 
         #submitBtn:hover,
@@ -75,7 +61,6 @@
 
         #submitBtn:focus,
         #ClearBtn:focus {
-            
             outline: none;
             background-color: rgb(2, 51, 40);
             color: whitesmoke;
@@ -184,8 +169,8 @@
 
         #menuBtn {
             font-family: 'cwTeXYen';
-            background-color: rgb(240, 132, 32);
-            border: 1px solid rgb(255, 115, 0);
+            background-color: rgb(127, 195, 234);
+            border: 3px solid rgba(160, 238, 127, 0.646);
             border-radius: 26.5px;
             box-shadow: 0 16px 22px -17px rgb(255, 29, 29);
             color: #fff;
@@ -205,14 +190,14 @@
 
         #menuBtn:hover {
             background-color: whitesmoke;
-            color: rgb(223, 108, 0);
+            color: rgb(110, 205, 224);
             font-weight: bold;
         }
 
         .floatingText {
-            background-color: rgb(110, 45, 33);
+            background-color: rgba(120, 238, 199, 0.805);
             border-radius: 10px 10px 0 0;
-            color: rgb(241, 236, 165);
+            color: rgb(157, 151, 62);
             padding: 7px 15px;
             position: fixed;
             bottom: 0;
@@ -223,7 +208,7 @@
         }
 
         .floatingText a {
-            color: rgb(228, 140, 140);
+            color: rgb(231, 91, 91);
             text-decoration: none;
         }
 
@@ -235,11 +220,6 @@
             #menuBtn {
                 right: 10px;
             }
-        }
-
-        body {
-            position: fixed;
-            background: #65B89B;
         }
 
         .line {
@@ -268,68 +248,164 @@
                 transform: translateX(50%) scaleX(1);
             }
         }
+
+        .header {
+            position: fixed;
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .title {
+            display: block;
+            text-align: center;
+            color: black;
+            float: right;
+        }
+
+        .left {
+            float: left;
+            width: 50%;
+            padding-top: 50px;
+            padding-left: 25px;
+        }
+
+        .right {
+            float: left;
+            width: 50%;
+            padding-left: 50px;
+        }
+
+        #username {
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            outline: none;
+            width: 400px;
+            height: 30p;
+            margin: 0 auto;
+            padding: 10px;
+            color: #333;
+            -webkit-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-input-placeholder {
+            color: #666;
+        }
+
+        :-moz-placeholder {
+            color: #666;
+        }
+
+        ::-moz-placeholder {
+            color: #666;
+        }
+
+        :-ms-input-placeholder {
+            color: #666;
+        }
+
+
+        #addAlarmBtn {
+            color: black;
+            background: transparent;
+            border: 1px solid black;
+            border-radius: 2px;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            /*   box-shadow: 0 2px 1em grey; */
+            /* box-shadow: 0 2px 1em grey; */
+        }
+
+        #addAlarmBtn:active {
+            transform: translate(0px, 2px);
+            -webkit-transform: translate(0px, 2px);
+            -moz-transform: translate(0px, 2px);
+            -ms-transform: translate(0px, 2px);
+            box-shadow: 0px 1px 0px 0px;
+        }
+
+        #addAlarmBtn:disabled {
+            opacity: 0.65;
+        }
+        #pptLogol{
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body>
     <div class="header">
-        <h1 class="logol"><a href="search.html" style="text-decoration: none; font-size: 70px "><span style="color:crimson;">L</span><span
-                    style="color: rgb(57, 150, 243);">M</span><span style="color: rgb(168, 123, 8);"> Search</span></a><span
-                style="text-align: center; color: black; font-size: 70px; font-weight: bold">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次設定</span></h1>
+        <a href="search.html" style="text-decoration: none "><span style="color:crimson;">L</span><span
+                style="color: rgb(57, 150, 243);">M</span><span style="color: yellow;"> Search</span></a>
+        <div class="title">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;設定
+        </div>
     </div>
     <br><br>
     <div class="form">
-        <div>
-            &#9831;&nbsp;&nbsp;<span class='title'>使用者名稱&nbsp;</span>
-            <input id="username" type="text" placeholder="  enter your username" autofocus autocomplete="on" style="height: 30px;"></label>
-            <br><br><br>&#9831;&nbsp;&nbsp;<span class='title'>提醒位置</span><br>
+        <div class="left">
+            &#9831;&nbsp;&nbsp;<span>使用者名稱&nbsp;</span><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="username" type="text" placeholder="  enter your username" autofocus autocomplete="on"></label>
+            <br><br><br><br><br>&#9831;&nbsp;&nbsp;<span>提醒位置</span><br>
             <table id="alarmLocal" style="width: 500px;">
-                <tr >
-                    <td><label><input name="alarmSeat" type="radio" value="7">頁面左上&nbsp;&nbsp;</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="8">頁面中上&nbsp;&nbsp;</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="9">頁面右上&nbsp;&nbsp;</label></td>
+                <tr style="height: 50px;">
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="7">頁面左上&nbsp;&nbsp;</label></td>
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="8">頁面中上&nbsp;&nbsp;</label></td>
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="9">頁面右上&nbsp;&nbsp;</label></td>
                 </tr>
-                <tr>     </tr>
-               
-                <tr>
-                    <td><label><input name="alarmSeat" type="radio" value="4">頁面左中&nbsp;&nbsp;</label></td>
-                    <td> <label><input name="alarmSeat" type="radio" value="5">頁面正中&nbsp;&nbsp;</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="6">頁面右中&nbsp;&nbsp;</label></td>
+    
+
+                <tr style="height: 50px;" >
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="4">頁面左中&nbsp;&nbsp;</label></td>
+                    <td> <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="5">頁面正中&nbsp;&nbsp;</label></td>
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="6">頁面右中&nbsp;&nbsp;</label></td>
                     <br>
                 </tr>
-                
-                <tr>
-                    <td><label><input name="alarmSeat" type="radio" value="1">頁面左下&nbsp;&nbsp;</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="2">頁面中下&nbsp;&nbsp;</label></td>
-                    <td><label><input name="alarmSeat" type="radio" value="3">頁面右下&nbsp;&nbsp;</label></td>
+
+                <tr style="height: 50px;" >
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="1">頁面左下&nbsp;&nbsp;</label></td>
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="2">頁面中下&nbsp;&nbsp;</label></td>
+                    <td><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="alarmSeat" type="radio"
+                                value="3">頁面右下&nbsp;&nbsp;</label></td>
                     <br>
                 </tr>
-                
+
             </table>
-            <br><br><br>&#9831;&nbsp;&nbsp;<span class='title'>提醒視窗覆蓋整個頁面 </span><br><br>
-            <label><input name="overImg" type="radio" value="0">否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <label><input name="overImg" type="radio" value="1">是</label>
         </div>
-        <div>
-            <br><br><br> &#9831;&nbsp;&nbsp;<span class='title'>本次提醒事項~</span><br><br>
+        <div class="right">
+            <br><br><br><br>&#9831;&nbsp;&nbsp;<span>提醒視窗覆蓋整個頁面 </span><br><br>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="overImg" type="radio"
+                    value="0">否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label><input name="overImg" type="radio" value="1">是</label>
+            <br><br><br><br><br><br> &#9831;&nbsp;&nbsp;<span>本次提醒事項~</span><br><br>
             <table id="AlarmTable">
                 <thead>
                     <tr>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提醒時間</th>
                         <th>提醒事件</th>
-                        <th>提醒時間</th>
                         <th><button id="addAlarmBtn">+</button></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
-        </div>
-        <br>
-        <br>
-        <p style="position:absolute; right:-500px;">
-            <button id="submitBtn">確定</button>
-            <button id="ClearBtn">取消變動</button>
+            <br>
+            <br>
+        </div class="left">
+        <p>
+            <button style="left: 40%" id="submitBtn">確定</button>
+            <button style="left: 50%" id="ClearBtn">取消變動</button>
         </p>
     </div>
     <div class="meau">
@@ -357,6 +433,7 @@
             </ul>
         </div>
     </div>
+    <img id="pptLogol" src="ppt.png" width="80" height="80" alt="logol" />
     <button id="menuBtn">點擊</button>
     <div class="floatingText">
         Homework by <a href="#">#wmoo & yuan</a>
@@ -403,8 +480,8 @@
                 let index = tbRow - 1;
                 if (IsNull(index) || tbRow == 0) {//表格行數為0時，或者表格不存在空值時
                     let content = "<tr>";
-                    content += '<td><input class="alarmText" type="text" autocomplete="on"/><div id="alarmText' + tbRow + '"></div></td>';
                     content += '<td><input class="alarmTime" type="time"/><div id="alarmTime' + tbRow + '"></div></td>';
+                    content += '<td><input class="alarmText" type="text" autocomplete="on"/><div id="alarmText' + tbRow + '"></div></td>';
                     content += '<td><button class="delAlarmBtn">x</button></td>';
                     content += "</tr>";
                     $("#AlarmTable tbody").append(content);
@@ -437,28 +514,37 @@
                 }
                 else if ($("#AlarmTable tbody tr").length > 0 && (!IsNull($("#AlarmTable tbody tr").length - 1))) {
                     check = false;
-                    swal("OOPS!!", "【提醒事項】沒寫完喔");
+                    swal("OOPS!!", "【提醒事項】沒寫完喔", "error");
                 }
                 else {
-                    let thingss = [,];
+                    let thingss="",what;
                     let seleted = $("#AlarmTable tbody input");
                     if (seleted.length > 0) {
                         seleted.each(function (i) {
-                            let what = seleted[i].value;
-                            thingss[i] = what;
+                            if(i%2==0){
+                                what = seleted[i].value;
+                                if(i!=0){
+                                    thingss+=",";
+                                }
+                                thingss+=what;
+                            }
+                            else{
+                                what = seleted[i].value;
+                                thingss+=what;
+                            }
                         });
                     }
                     else {
-                        thingss = 0;
+                        thingss = "0";
                     }
-                   if (check) {
+                    if (check) {
                         let cmd = {};
                         cmd["act"] = "Setting";
                         cmd["userId"] = userId;
                         cmd["username"] = un;
                         cmd["showSeat"] = showSeat;
                         cmd["over"] = over;
-                        cmd["alarm"] = JSON.stringify(thingss);
+                        cmd["alarm"] = thingss;
                         $.post("index.php", cmd, function (data) {
                             data = JSON.parse(data);
                             if (data.statue == false) {
@@ -483,22 +569,32 @@
             $("#username").val(userName);
             $("input[name='alarmSeat'][value=" + userSeat + "]").attr('checked', true);
             $("input[name='overImg'][value=" + userOver + "]").attr('checked', true);
-            if (userAlarm === null) {
-                userAlarm = 0;
-            }
-            for (let tbRow = 0; tbRow < Math.floor(userAlarm.length / 2); tbRow++) {
-                let content = "<tr>";
-                content += '<td><input class="alarmText" type="text" autocomplete="on"/><div id="alarmText' + tbRow + '"></div></td>';
-                content += '<td><input class="alarmTime" type="time"/><div id="alarmTime' + tbRow + '"></div></td>';
-                content += '<td><button class="delAlarmBtn">x</button></td>';
-                content += "</tr>";
-                $("#AlarmTable tbody").append(content);
-                $("#alarmText" + tbRow).val(userAlarm[tbRow * 2]);
-                $("#alarmTime" + tbRow).val(userAlarm[tbRow * 2 + 1]);
-                $(delAlarmBtn).on("click", function () {
-                    $(this).parents("tr").remove();
-                });
-            }
+            // if (userAlarm === null|| userAlarm=="0") {
+            //     userAlarm = 0;
+            // }
+            // else{
+            //     let Alarm= new Array();
+            //     Alarm=userAlarm.split(',');
+            //     for (let tbRow = 0; tbRow < Alarm.length; tbRow++) {
+            //         let content = "<tr>";
+            //         content += '<td><input class="alarmTime" type="time"/><div id="alarmTime' + tbRow + '"></div></td>';
+            //         content += '<td><input class="alarmText" type="text" autocomplete="on"/><div id="alarmText' + tbRow + '"></div></td>';
+            //         content += '<td><button class="delAlarmBtn">x</button></td>';
+            //         content += "</tr>";
+            //         $("#AlarmTable tbody").append(content);
+            //         $("#alarmTime" + tbRow).val(Alarm[tbRow].substring(0,5));
+            //         $("#alarmText" + tbRow).val(Alarm[tbRow].substring(5));
+                    
+            //         console.log("1:"+$("#alarmTime" + tbRow).val());
+            //         console.log("2:"+ $("#alarmText" + tbRow).val());
+            //         $(delAlarmBtn).on("click", function () {
+            //             $(this).parents("tr").remove();
+            //         });
+            //     }
+            //     $("#AlarmTable tbody input").each(function (i) {
+            //         $(this).attr("value",$(this).val());
+            //     });
+            // }
         }
         function IsNull(trIndex) {
             let result = true;//遍歷表格的input
