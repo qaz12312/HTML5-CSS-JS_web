@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 canvas超逼真的模擬時鐘特效</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link href='http://fonts.useso.com/css?family=PT Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" media="screen" href="css/main.css" />
+    <!--[if IE]>
+<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    現在是北京時間：<span id='yanshi_time'></span>
+    <br />
+    <audio src='http://cctv3.qiniudn.com/tbhdqx.mp3' preload='auto' id='music'></audio>
+    請設定你的鬧鈴時間：
+    <input type='number' value='08' id='qiuye_shiz' size='1' min='0' max="23">
+    <input type='number' value='30' id='qiuye_fenz' size='1' min='0' max="59">
+    <input type='number' value='00' id='qiuye_miaoz' size='1' min='0' max="59">
+    <input type='button' value='關閉鬧鐘' id='qiuye_gb' size=2>
+    <script>
+    window.onload = function () {//網頁加載完成後才執行以下代碼
+                qiuye_shiz = document.getElementById('qiuye_shiz').value,//獲取輸入框的值
+                qiuye_fenz = document.getElementById('qiuye_fenz').value,//獲取輸入框的值
+                qiuye_miaoz = document.getElementById('qiuye_miaoz').value;//獲取輸入框的值
+
+            var input = document.getElementsByTagName('input');//取得input數組
+
+            var music = document.getElementById('music');//取得音樂所在標籤
+            var gb = document.getElementById('qiuye_gb');//獲取關閉按鈕
+
+            for (i = 0; i < input.length; i++) {//for循環
+                input[i].oninput = function () {//每個輸入框輸入文字後執行以下代碼
+                    qiuye_shiz = document.getElementById('qiuye_shiz').value,//重新獲取輸入框的值
+                        qiuye_fenz = document.getElementById('qiuye_fenz').value,//重新獲取輸入框的值
+                        qiuye_miaoz = document.getElementById('qiuye_miaoz').value;//重新獲取輸入框的值
+                }
+            } 
+            function showtime() {//函數方法
+                var time = new Date();//獲取本地時間
+                var minute = time.getMinutes();//獲取分鐘
+                var hou = time.getHours();//獲取小時
+                var sec = time.getSeconds();//獲取秒鐘
+
+                var content = document.getElementById('yanshi_time');//獲取yanshi_time標籤
+                content.innerHTML = '' + add_o(hou) + ' : ' + add_o(minute) + ' : ' + add_o(sec);//往標籤裡面插入內容，分別是小時+分鐘+秒鐘的字符串連接
+                var d1 = hou >= qiuye_shiz && minute >= qiuye_fenz && sec >= qiuye_miaoz; 
+                var d2 = hou >= qiuye_shiz && minute > qiuye_fenz; 
+                var d3 = hou > qiuye_shiz; 
+                if (d1 || d2 || d3) 
+                {//判斷輸入框的時間
+                    if (!music.play()) 
+                    { 
+                        music.play(); 
+                    }//響鈴
+                    content.style.color = 'red';//改變字體顏色為紅色
+                } 
+                else { music.pause(); content.style.color = 'black'; }//同理
+            } 
+
+            showtime();//先執行一遍showtime函數
+
+            function add_o(m) {//小時，分鐘，秒鐘數字小於10的往前補一個0，標準化時間格式
+                if (m < 10) { return '0' + m; } else { return m; }
+            } 
+
+            var timer = setInterval(showtime, 1000);//設置定時器，每隔一秒執行一次showtime函數
+            
+            gb.onclick = function () {//關閉按鈕被點擊後關閉鈴聲
+                qiuye_shiz = 24;
+            }
+        }
+        </script>
+
+
+</body>
+
+</html>
