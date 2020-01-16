@@ -2,115 +2,33 @@
 <html lang="zh-TW">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>LM search</title>
-
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	 crossorigin="anonymous">
-
-	</script>
-	<meta name="description" content="LM search" />
-	<link rel="icon" type="image/ico" href="03_256x256.ico" sizes="256x256">
-
-	<link rel="stylesheet" href="search.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript">
-
-	</script>
-
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js">
-
-	</script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js">
-
-	</script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
-	<script>
-		var jQuery_ = $.noConflict();
-        (function ($) {
-            let dialogH = 0;
-            let dialogW = 0;
-            let dialogL = 0;
-            let dialogT = 0;
-            if (over == 1) {
-                dialogH = $(document.body).outerHeight(true);
-                dialogW = $(document.body).outerWidth(true);
-            }
-            else {
-                switch (showSeat) {
-                    case '7':
-                        dialogL = 0;
-                        dialogT = 0;
-                        break;
-                    case '8':
-                        dialogL = (document.body.clientWidth) / 2;
-                        daialogT = 0;
-                        break;
-                    case '9':
-                        dialogL = document.body.clientWidth;
-                        dialogT = 0;
-                        break;
-                    case '4':
-                        dialogL = 0;
-                        dialogT = (document.body.clientHeight) / 2;
-                        break;
-                    case '5':
-                        dialogL = (document.body.clientWidth) / 2;
-                        dialogT = (document.body.clientHeight) / 2;
-                        break;
-                    case '6':
-                        dialogL = document.body.clientWidth;
-                        dialogT = (document.body.clientHeight) / 2;
-                        break;
-                    case '1':
-                        dialogL = 0;
-                        dialogT = document.body.clientHeight;
-                        break;
-                    case '2':
-                        dialogL = (document.body.clientWidth) / 2;
-                        dialogT = document.body.clientHeight;
-                        break;
-                    case '3':
-                        dialogL = document.body.clientWidth;
-                        dialogT = document.body.clientHeight;
-                        break;
-                }
-            }
-
-            jQuery_("#dialogDiv").dialog({
-                left: dialogL,
-                top: dialogT,
-                width: dialogW,
-                height: dialogH,
-                modal: true,
-                draggable: false,
-                autoOpen: false,
-                buttons: {
-                    "Ok": function () {
-                        jQuery_(this).dialog("close");
-                        var ans = $("#Respond").val();
-                        console.log(ans);
-                        if (ans == 2) {
-                            fiveMinutes();
-                        }
-                    }
-                }
-            });
-        });
-	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LM search</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <meta name="description" content="LM search" />
+    <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="256x256">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
+        type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script src="all.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="search.css">
 </head>
 
 <body>
-	<div class="header">
-		<nav role='navigation' class="menu claerfix">
-			<ul class="top-menu">
-				<h1> <a id="logol" href="search.html"><span style="color:crimson;">L</span><span
+    <div class="header">
+        <nav role='navigation' class="menu claerfix">
+            <ul class="top-menu">
+                <h1><a id="logol" href="search.html"><span style="color:crimson;">L</span><span
                             style="color: rgb(57, 150, 243);">M</span><span style="color: yellow"> Search</span></a>
                 </h1>
                 <li id="MenuWord1">
-                    <a href="setting.html">SETTING</a>
+                    <a href="setting.html">setting</a>
                 </li>
                 <li id="MenuWord2">
                     <a href="history.html">History</a>
@@ -119,7 +37,7 @@
                     <a href="https://www.youtube.com/?gl=TW&hl=zh-TW" target="_blank">YouTube</a>
                 </li>
                 <li id="MenuWord4">
-                    <a href="index.html">LOg out</a>
+                    <a href="index.html">Log out</a>
                 </li>
             </ul>
             <ul class="side-menu">
@@ -128,18 +46,17 @@
                         <span id="x-icon-SideBtn" onclick="closeNav()">&times;</span>
                         <div class="mobile-menu-items">
                             <a id="mobileMenuWord1" onclick="closeNav()" href="setting.html">
-                                SETTING
+                                setting
                             </a>
                             <a id="mobileMenuWord2" onclick="closeNav()" href="history.html">
-                                HISTORY
+                                History
                             </a>
                             <a id="mobileMenuWord3" onclick="closeNav()"
                                 href='https://www.youtube.com/?gl=TW&hl=zh-TW&hl=zh-TW'>
                                 YouTube
                             </a>
-                            <a id="mobileMenuWord4" onclick="closeNav()"
-                                href='index.html'>
-                                Log OUT
+                            <a id="mobileMenuWord4" onclick="closeNav()" href='index.html'>
+                                Log out
                             </a>
                         </div>
                     </div>
@@ -173,88 +90,67 @@
         <div id="searchContent">
         </div>
     </div>
-    <div id="dialogDiv">
-        <h1 id="notification"></h1>
-        <select id="Respond">
-            <option value="1">我知道了OKOK</option>
-            <option value="2">立馬去~</option>
-        </select>
-        <img src="03.png">
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
-        type="text/javascript"></script>
+
 
     <script type="text/javascript">
-        swal.setDefaults({
-            confirmButtonText: "確定",
-            cancelButtonText: "取消"
-        });
         let userId = sessionStorage.getItem('LM-UserId'),
             keyword = sessionStorage.getItem('LM-keyword'),
             userName = sessionStorage.getItem('LM-UserName'),
             over = sessionStorage.getItem('LM-over'),
             showSeat = sessionStorage.getItem('LM-showSeat'),
             userAlarm = sessionStorage.getItem('LM-alarm');
-
-        swal.setDefaults({
-            confirmButtonText: "確定",
-            cancelButtonText: "取消"
-        });
-
         let arr = [];
         $(document).ready(function () {
-            if (userAlarm === null|| userAlarm=="0") {
+            if (userAlarm === null || userAlarm == "0") {
                 userAlarm = 0;
             }
-            else{
-                let Alarm= new Array();
-                Alarm=userAlarm.split(',');
+            else {
+                let Alarm = new Array();
+                Alarm = userAlarm.split(',');
                 for (let i = 0; i < Alarm.length; i++) {
-                    let alarmHour = Alarm[i].substring(0,2);
+                    let alarmHour = Alarm[i].substring(0, 2);
                     let alarmMinuteT = Alarm[i].substring(3);
                     arr[i] = alarmHour + alarmMinuteT;
                 }
             }
-
-            /*更改dialog標題*/
-            let dialogTitle = document.getElementById("dialogDiv");
-            dialogTitle.setAttribute("title", userName + "，媽媽過來提醒你啦!");
-            let dialogAlarm = document.getElementById("notification");
-
-            /**/
-            $("#searchInfo, ul.side-menu, #nextPageBtn,#Respond,.ui-dialog,#dialogDiv").hide();
+            $("#searchInfo, ul.side-menu, #nextPageBtn").hide();
             document.getElementById("searchContent").innerHTML = "";
-            /**/
 
             if (userId <= 0) {
-                alert("請重新登入");
-                window.location.href = "index.html";
+                swal({
+                    title: '請重新登入',
+                    type: 'warning',
+                    text: '本訊息2秒後自動關閉',
+                    showConfirmButton: false,
+                    timer: 2000,
+                }).then(
+                    function () { },
+                    function (dismiss) {
+                        if (dismiss === 'timer') {
+                            window.location.href = "index.html";
+                        }
+                    }
+                )
             }
             else {
                 StartTime();
-                // 
                 var timer = setInterval(StartTime, 1000);
-                //
                 $("#searchBtn").on("click", function () {
                     if ($("#searchText").val() != "") {
-                        $(".header").css({"z-index":"0"});
-                        $("#searchContent").css({"z-index":"-1"});
-                        $("#searchInfo").css({"z-index":"-1"});
-                        $(".area").css({"z-index":"-5"});
+                        $(".header").css({ "z-index": "0" });
+                        $("#searchContent").css({ "z-index": "-1" });
+                        $("#searchInfo").css({ "z-index": "-1" });
+                        $(".area").css({ "z-index": "-5" });
                         $("#MenuWord1,#MenuWord2,#MenuWord3,#MenuWord4").hide();
                         $(".side-menu").show();
-                        $(".side-menu").css({"background": "black","box-shadow": "none"});
+                        $(".side-menu").css({ "background": "black", "box-shadow": "none" });
                         $(".menu").css({ "background-color": "black", "position": "fixed", "top": "0", "height": "80px", "z-index": "1" });
                         $(".search-bar").addClass('animated');
                         $("html").css("min-height", "1300px");
-                        
                         initialSearch();
                         doSearch(page);
                     }
                 });
-
                 var page = 1;
                 let totalResults = 0;
                 if (keyword) {
@@ -278,7 +174,7 @@
 
                 function doSearch(i) {
                     let queryData = $("#searchText").val();
-                    let url ="https://www.googleapis.com/customsearch/v1?key=AIzaSyAtTZCar8VqDXdvZFF4q4hPRW9G2IfC6VA&cx=003244246363408446282:ph9vapwkgfq&start=" + i + "&q=" + queryData;
+                    let url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAtTZCar8VqDXdvZFF4q4hPRW9G2IfC6VA&cx=003244246363408446282:ph9vapwkgfq&start=" + i + "&q=" + queryData;
                     $.getJSON(url, function (data) {
                         $("#totalResults").html(data.searchInformation.formattedTotalResults);
                         totalResults = data.searchInformation.totalResults
@@ -316,7 +212,15 @@
                     $.post("index.php", cmd, function (data) {
                         data = JSON.parse(data);
                         if (data.statue == false) {
-                            alert("抱歉.. \n目前此筆搜尋未存入 \u2620");
+                            swal({
+                                title: 'ERROR',
+                                type: 'error',
+                                html: '目前此筆搜尋未存入 \u2620',
+                                animation: false,
+                                customClass: 'animated rotateOutUpLeft',
+                                confirmButtonText: '知道了',
+                                confirmButtonColor: '#eda2b6'
+                            })
                         }
                     });
                 }
@@ -329,60 +233,70 @@
             document.getElementById("mySidenav").style.width = "0";
         }
 
-         function StartTime() {
+        function StartTime() {
             let today = new Date();
-            let hour = today.getHours();
-            let minute = today.getMinutes();
-            let second = today.getSeconds();
+            let hour = today.getHours(),
+                minute = today.getMinutes(),
+                second = today.getSeconds();
             minute = CheckTime(minute);
             second = CheckTime(second);
             hour = CheckTime(hour);
-            if(minute=='00'&&second=='00'||minute=='30'&&second=='00'){
+            if (minute == '00' && second == '00' || minute == '30' && second == '00') {
                 swal({
                     title: "媽媽貼心小叮嚀",
-                    text: userName+"&#9733;&#9733; 用了30分鐘，484該去休息了???",
+                    html: userName + "&#9733;&#9733; 用了30分鐘，484該去休息了???",
                     type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "blue",
-                    confirmButtonText: "okok，現在就去",
-                    cancelButtonText: "等一下~",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
+                    confirmButtonColor: "#85cfb4",
+                    input: 'select',
+                    inputOptions: {
+                        'fewSecond': '等一下~',
+                        'underStand': 'okok，現在就去',
+                        '5min': '可不可以再5分鐘'
                     },
-                    function(isConfirm){
-                        if (isConfirm) {
-                            swal({
-                                title: "開心!",
-                                text: "真棒",
-                                type: "success",
-                                timer: 1000,
-                                showConfirmButton: false
-                            });
-                        } else {
-                            swal({
-                                title: "Umm...",
-                                text: "先休息!眼睛要保護好~",
-                                type: "warning",
-                                timer: 1500,
-                                showConfirmButton: false
-                             });
-                        }
-                });
+                    inputPlaceholder: '你的回答是?',
+                    inputValidator: function (value) {
+                        return new Promise(function (resolve, reject) {
+                            if (value === 'underStand') {
+                                resolve()
+                            } else {
+                                reject('回答錯誤喔 :)')
+                            }
+                        })
+                    }
+                })
             }
-            // console.log(hour+":"+minute+":"+second);
             for (let z = 0; z < arr.length; z++) {
-                let userH=arr[z].substring(0,2),
-                    userM=arr[z].substring(2,4);
-                // console.log("arr[z]:"+arr[z]);
-                if (hour == userH && minute ==userM  && second == '00') {
-                    // $("#Respond,.ui-dialog,#dialogDiv").show();
-                    //var theDialog = jQuery_("#dialogDiv").dialog(opt);
-                    //theDialog.dialog("open");
-                    //  jQuery_("#dialogDiv").dialog("open");
-                    //alert(arr[z].substring(4));
-                    swal("媽媽來了!!", arr[z].substring(4), "warning");
-                    // dialogAlarm.innerHTML = arr[z].substring(4);
-                    // console.log("@@@@Yes!!!");
+                let userH = arr[z].substring(0, 2),
+                    userM = arr[z].substring(2, 4);
+                if (hour == userH && minute == userM && second == '00') {
+                    swal({
+                        type: 'warning',
+                        confirmButtonColor: '#8a54a2',
+                        title: arr[z].substring(4),
+                        input: 'select',
+                        inputOptions: {
+                            'fewSecond': '等一下再提醒我',
+                            'underStand': '了解^^',
+                            '5min': '可不可以再5分鐘'
+                        },
+                        inputPlaceholder: '你的回答是?',
+                        inputValidator: function (value) {
+                            return new Promise(function (resolve, reject) {
+                                if (value === 'underStand') {
+                                    resolve()
+                                } else {
+                                    reject('你需要現在去執行 :)')
+                                }
+                            })
+                        }
+                    }).then(function (result) {
+                        swal({
+                            title: '賞顆糖',
+                            width: 600,
+                            padding: 100,
+                            background: '#fff url(images/03.png)'
+                        })
+                    })
                 }
             }
         }
@@ -390,16 +304,9 @@
             if (i < 10) {
                 return '0' + i;
             }
-            else{
+            else {
                 return i;
             }
-        }
-
-        function fiveMinutes() {
-            // /*分 = 分 +5 ;*/
-            // arr[z].sustring(2, 4) = parseInt(arr[z].sustring(2, 4))+5;
-            // StartTime();
-            alert("恩~");
         }
     </script>
 </body>

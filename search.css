@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-
-*{
-  box-sizing: border-box;
-}
 
 html {
   height:100%;
@@ -14,7 +9,6 @@ body{
   display: block;
   list-style: none;
   margin: 0;
-  font-family: 'Muli';
 }
 
 .header {
@@ -422,42 +416,13 @@ button:hover {
     }
 
 }
-/*跳通知*/
-div.ui-dialog-titlebar {
-  /*改title*/
-  background: rgb(209, 61, 12);
-  color: rgb(254, 255, 254);
-  font-weight: normal;
-}
 
-.ui-dialog {
-  /*改中間*/
-  background: rgb(239, 151, 27);
-}
-
-.ui-dialog h1 {
-  /*字*/
-  color: rgb(10, 10, 10);
-  font-family: fantasy;
-  font-size: larger;
-}
 
 img {
   width: 100px;
   height: 100px;
   float: left;
 }
-
-#Respond {
-  /*下拉選單*/
-  background: rgb(241, 203, 11);
-  position: absolute;
-  right: 10%;
-  bottom: 50%;
-  float: right;
-}
-
-
 
 
 
