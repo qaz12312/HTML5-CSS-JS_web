@@ -8,49 +8,34 @@
     <title>Welecome to LM search !</title>
     <meta name="description" content="LM search" />
     <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="256x256">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
+        type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script src="all.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+    <link rel="stylesheet" href="all.css">
     <style>
-         @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-         @import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css'); 
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             color: whitesmoke;
             line-height: 30px;
             font-weight: bold;
-            font-family: 'cwTeXYen';
-            overflow: hidden;
-            background: linear-gradient(132deg, #24c6dc, #3494e6, #ec6ead, #f80759, #bc4e9c);
+            background: linear-gradient(0.25turn, #ffa289, #6a92cc, #706fab, #50293c);
             background-size: 400% 400%;
-            animation: Gradient 15s ease infinite;
-        }
-
-        @keyframes Gradient {
-            0% {
-                background-position: 0% 50%
-            }
-
-            50% {
-                background-position: 100% 50%
-            }
-
-            100% {
-                background-position: 0% 50%
-            }
+            animation: BACKGROUND 13s ease infinite;
+            overflow:hidden;
         }
 
         .contentFrame {
-            background-color: #563d7c;
+            background-color: #5c2831;
             display: inline-block;
             border: 4px solid white;
             border-radius: .25rem;
             padding: 17px;
-            position: fixed;
+            position: absolute;
             top: 30%;
             left: 40%;
+            cursor: crosshair;
         }
 
         .logol {
@@ -59,10 +44,10 @@
         }
 
         button {
-            padding: 5px ;
+            padding: 5px;
             margin: 6px;
             float: right;
-            background-color: #563d7c;
+            background-color: #5c2831;
             color: whitesmoke;
             cursor: pointer;
             -webkit-border-radius: 5px;
@@ -91,6 +76,7 @@
             -webkit-border-radius: 5px;
             border-radius: 5px;
             margin-left: 4px;
+            cursor: text;
         }
 
         .inputText:hover {
@@ -102,13 +88,12 @@
             outline: none;
         }
 
-        #pptLogol{
+        #pptLogol {
             position: fixed;
             bottom: 10px;
             left: 10px;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 
 </head>
 
@@ -126,35 +111,44 @@
         </p>
         <p>
             <button id="Log-inBtn">Open &#155;&#155;</button>
-            <button id="Sign-upBtn">Create &#10010;	</button>
+            <button id="Sign-upBtn">Create &#10010; </button>
         </p>
     </div>
-    <a href="https://docs.google.com/presentation/d/1MCezVU0fCvFKIzxSP5ihDYZFq_kDo0zvlRGXtG4D7KY/edit?usp=sharing" target="_blank"><img id="pptLogol" src="ppt.png" width="80" height="80" alt="ppt" /></a>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
-        type="text/javascript"></script>
+    <a href="https://docs.google.com/presentation/d/1MCezVU0fCvFKIzxSP5ihDYZFq_kDo0zvlRGXtG4D7KY/edit?usp=sharing"
+        target="_blank"><img id="pptLogol" src="ppt.png" width="80" height="80" alt="ppt" /></a>
+
+
     <script type="text/javascript">
-
-        swal.setDefaults({
-            confirmButtonText: "okay!",
-            cancelButtonText: "取消"
-        });
-
         $(document).ready(function () {
             initial();
-
             $("#Log-inBtn").click(function () {
                 let act = $("#account").val(),
                     pw = $("#passward").val();
                 let format = Restrict();
 
                 if ((!act)) {
-                    swal("恩?" ,"請輸入註冊時用的帳號\u2620", "error");
+                    swal({
+                        title: '迷路了?',
+                        type: 'error',
+                        html: $('<h3>').text('請輸入註冊時用的帳號 \u2620'),
+                        animation: false,
+                        customClass: 'animated tada',
+                        confirmButtonText: 'okay!',
+                        confirmButtonColor: '#ecba73'
+                    })
                     $("#account").focus().val("");
                 }
                 else if (!pw) {
-                    swal("恩??", "沒輸入密碼喔?\u2620", "error");
+                    swal({
+                        title: '迷路了?',
+                        type: 'error',
+                        html: $('<h3>').text('沒輸入密碼喔 \u2620'),
+                        animation: false,
+                        customClass: 'animated tada',
+                        confirmButtonText: 'okay!',
+                        confirmButtonColor: '#b9cd74'
+                    })
                 }
                 else if (format) {
                     let cmd = {};
@@ -164,18 +158,53 @@
                     $.post("./index.php", cmd, function (data) {
                         data = JSON.parse(data);
                         if (data.statue == false) {
-                            swal("OOPS...", "帳號或密號錯誤 \u2620", "error");
+                            swal({
+                                title: 'OOPS...',
+                                type: 'error',
+                                text:'帳號或密號錯誤 \u2620',
+                                animation: false,
+                                customClass: 'animated rotateOutUpLeft',
+                                confirmButtonText: 'okay!',
+                                confirmButtonColor: '#eda2b6'
+                            })
                         }
                         else {
                             leaveUserDetails(data.data[0], data.data[1], data.data[2], data.data[3], data.data[4]);
-                            window.location.href = "search.html";
+                            swal({
+                                title: '歡迎',
+                                type: 'success',
+                                text: '本訊息1秒後自動關閉',
+                                showConfirmButton: false,
+                                timer: 1000,
+                            }).then(
+                                function () { },
+                                function (dismiss) {
+                                    if (dismiss === 'timer') {
+                                        window.location.href = "search.html";
+                                    }
+                                }
+                            )
                         }
                     });
                 }
             });
 
             $("#Sign-upBtn").click(function () {
-                window.location.href = "signUp.html";
+                swal({
+                    title: '歡迎',
+                    type: 'info',
+                    text: '本訊息1秒後自動關閉',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1000,
+                }).then(
+                    function () { },
+                    function (dismiss) {
+                        if (dismiss === 'timer') {
+                            window.location.href = "signUp.html";
+                        }
+                    }
+                )
             });
         });
 
@@ -193,19 +222,43 @@
                 okPassword = re.exec(pw);
 
             if (act.length > 20 || act.length < 3) {
-                swal("OOPS!!", "帳號字數只能在3~20內!!!!", "warning");
+                swal({
+                    title: 'OOPS...',
+                    type: 'error',
+                    text:'帳號字數只能在3~20內!!!!',
+                    confirmButtonText: 'okay!',
+                    confirmButtonColor: '#a1268e'
+                })
                 return false;
             }
             else if (okAccount) {
-                swal("OOPS!!", "帳號只能是英文、數字、底線哦 &#9888;", "error");
+                swal({
+                    title: 'OOPS...',
+                    type: 'error',
+                    html:'帳號只能是英文、數字、底線哦 &#9888;',
+                    confirmButtonText: 'okay!',
+                    confirmButtonColor: '#8a54a2'
+                })
                 return false;
             }
             else if (pw.length > 20 || pw.length < 3) {
-                swal("OOPS!!", "密碼字數只能在3~20內!!!!", "warning");
+                swal({
+                    title: 'OOPS...',
+                    type: 'error',
+                    html:'密碼字數只能在3~20內!!!!',
+                    confirmButtonText: 'okay!',
+                    confirmButtonColor: '#7a96a2'
+                })
                 return false;
             }
             else if (okPassword) {
-                swal("OOPS!!", "密碼只能是英文、數字、底線哦 &#9888;", "error");
+                swal({
+                    title: 'OOPS...',
+                    type: 'error',
+                    html:'密碼只能是英文、數字、底線哦 &#9888;',
+                    confirmButtonText: 'okay!',
+                    confirmButtonColor: '#252621'
+                })
                 return false;
             }
             return true;

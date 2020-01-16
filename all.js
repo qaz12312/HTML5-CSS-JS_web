@@ -1,0 +1,3 @@
+swal.setDefaults({
+    allowOutsideClick:false
+});
