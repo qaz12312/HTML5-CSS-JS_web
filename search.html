@@ -93,7 +93,7 @@
 
 
     <script type="text/javascript">
-        let userId = sessionStorage.getItem('LM-UserId'),
+        let userId = 9,
             keyword = sessionStorage.getItem('LM-keyword'),
             userName = sessionStorage.getItem('LM-UserName'),
             over = sessionStorage.getItem('LM-over'),
@@ -145,7 +145,7 @@
                         $(".side-menu").show();
                         $(".side-menu").css({ "background": "black", "box-shadow": "none" });
                         $(".menu").css({ "background-color": "black", "position": "fixed", "top": "0", "height": "80px", "z-index": "1" });
-                        $(".search-bar").addClass('animated');
+                        $(".search-bar").addClass('TOTOP');
                         $("html").css("min-height", "1300px");
                         initialSearch();
                         doSearch(page);

@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
 
 html {
   height:100%;
-  background-image: linear-gradient(to right top, #13011d 0%, rgb(53, 3, 3) 100%);    /*背景漸層*/
+  background-image: linear-gradient(to right top, #efc638 0%, rgb(37, 33, 10) 100%);    /*背景漸層*/
 }
 
 
@@ -9,6 +11,7 @@ body{
   display: block;
   list-style: none;
   margin: 0;
+  font-family: 'Muli';
 }
 
 .header {
@@ -139,7 +142,7 @@ nav ul li a:hover {
 }
 
 /*Search-bar 往上移*/
-.animated {
+.TOTOP {
   transition: 1s;
   -webkit-transition: 1s;
   transform: scale(0.7, 0.7);
@@ -318,7 +321,7 @@ button:hover {
     width: 20px;
     height: 20px;
     background: rgba(255, 255, 255, 0.2);
-    animation: animate 25s linear infinite;
+    animation: CIRCLE 25s linear infinite;
     bottom: -150px;
 
 }
@@ -401,47 +404,9 @@ button:hover {
 
 
 
-@keyframes animate {
-
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
-    }
-
-    100% {
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
-    }
-
-}
-
 
 img {
   width: 100px;
   height: 100px;
   float: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
