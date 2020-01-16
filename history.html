@@ -403,6 +403,38 @@
             minute = CheckTime(minute);
             second = CheckTime(second);
             hour = CheckTime(hour);
+            if(minute=='00'&&second=='00'||minute=='30'&&second=='00'){
+                swal({
+                    title: "媽媽貼心小叮嚀",
+                    text: userName+"&#9733;&#9733; 用了30分鐘，484該去休息了???",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "blue",
+                    confirmButtonText: "okok，現在就去",
+                    cancelButtonText: "等一下~",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            swal({
+                                title: "開心!",
+                                text: "真棒",
+                                type: "success",
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            swal({
+                                title: "Umm...",
+                                text: "先休息!眼睛要保護好~",
+                                type: "warning",
+                                timer: 1500,
+                                showConfirmButton: false
+                             });
+                        }
+                });
+            }
             if(hour == "12" && minute =="00"  && second == '00'){
                 swal({
                     title: "媽媽貼心小叮嚀",

@@ -2,25 +2,33 @@
 <html lang="zh-TW">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LM search</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LM search</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <meta name="description" content="LM search" />
-    <link rel="icon" type="image/ico" href="03_256x256.ico" sizes="256x256">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	 crossorigin="anonymous">
 
-    <link rel="stylesheet" href="search.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-    
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
-    <script>
-        var jQuery_ = $.noConflict();
+	</script>
+	<meta name="description" content="LM search" />
+	<link rel="icon" type="image/ico" href="03_256x256.ico" sizes="256x256">
+
+	<link rel="stylesheet" href="search.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript">
+
+	</script>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js">
+
+	</script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js">
+
+	</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+	<script>
+		var jQuery_ = $.noConflict();
         (function ($) {
             let dialogH = 0;
             let dialogW = 0;
@@ -91,15 +99,14 @@
                 }
             });
         });
-
-    </script>
+	</script>
 </head>
 
 <body>
-    <div class="header">
-        <nav role='navigation' class="menu claerfix">
-            <ul class="top-menu">
-                <h1> <a id="logol" href="search.html"><span style="color:crimson;">L</span><span
+	<div class="header">
+		<nav role='navigation' class="menu claerfix">
+			<ul class="top-menu">
+				<h1> <a id="logol" href="search.html"><span style="color:crimson;">L</span><span
                             style="color: rgb(57, 150, 243);">M</span><span style="color: yellow"> Search</span></a>
                 </h1>
                 <li id="MenuWord1">
@@ -271,9 +278,7 @@
 
                 function doSearch(i) {
                     let queryData = $("#searchText").val();
-                    let url =
-                        "https://www.googleapis.com/customsearch/v1?key=AIzaSyAm2g1Xiwm5gfFqF-8I8uDMCecmTSEidwE&cx=015408741262752838854:yqraf9e4y2a&start="
-                        + i + "&q=" + queryData;
+                    let url ="https://www.googleapis.com/customsearch/v1?key=AIzaSyAtTZCar8VqDXdvZFF4q4hPRW9G2IfC6VA&cx=003244246363408446282:ph9vapwkgfq&start=" + i + "&q=" + queryData;
                     $.getJSON(url, function (data) {
                         $("#totalResults").html(data.searchInformation.formattedTotalResults);
                         totalResults = data.searchInformation.totalResults
@@ -332,6 +337,38 @@
             minute = CheckTime(minute);
             second = CheckTime(second);
             hour = CheckTime(hour);
+            if(minute=='00'&&second=='00'||minute=='30'&&second=='00'){
+                swal({
+                    title: "媽媽貼心小叮嚀",
+                    text: userName+"&#9733;&#9733; 用了30分鐘，484該去休息了???",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "blue",
+                    confirmButtonText: "okok，現在就去",
+                    cancelButtonText: "等一下~",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            swal({
+                                title: "開心!",
+                                text: "真棒",
+                                type: "success",
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            swal({
+                                title: "Umm...",
+                                text: "先休息!眼睛要保護好~",
+                                type: "warning",
+                                timer: 1500,
+                                showConfirmButton: false
+                             });
+                        }
+                });
+            }
             // console.log(hour+":"+minute+":"+second);
             for (let z = 0; z < arr.length; z++) {
                 let userH=arr[z].substring(0,2),
