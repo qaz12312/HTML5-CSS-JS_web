@@ -33,6 +33,7 @@
             doShow();
             break;
     }
+    mysqli_close($conn);
 
     function doLogin(){
         global $input,$conn;
